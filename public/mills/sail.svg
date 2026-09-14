@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="SAIL">
+  <rect width="200" height="80" fill="#fff"/>
+  <circle cx="36" cy="40" r="18" fill="#0033A0"/>
+  <path d="M28 48 L36 24 L44 48 Z" fill="#E31837"/>
+  <text x="62" y="48" font-family="Arial Black, Arial, sans-serif" font-size="28" font-weight="700" fill="#0033A0">SAIL</text>
+</svg>

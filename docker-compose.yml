@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: jagdamba
+      POSTGRES_PASSWORD: jagdamba
+      POSTGRES_DB: jagdamba_profile
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jagdamba -d jagdamba_profile"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Optional MySQL alternative (uncomment and switch Prisma provider to mysql)
+  # mysql:
+  #   image: mysql:8.4
+  #   restart: unless-stopped
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: jagdamba_profile
+  #     MYSQL_USER: jagdamba
+  #     MYSQL_PASSWORD: jagdamba
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://jagdamba:jagdamba@db:5432/jagdamba_profile?schema=public
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  # mysql_data:

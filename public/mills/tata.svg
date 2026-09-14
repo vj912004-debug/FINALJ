@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" role="img" aria-label="Tata Steel">
+  <rect width="220" height="80" fill="#fff"/>
+  <circle cx="36" cy="40" r="16" fill="none" stroke="#0B5CAB" stroke-width="3"/>
+  <circle cx="36" cy="40" r="6" fill="#0B5CAB"/>
+  <text x="60" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0B5CAB">TATA</text>
+  <text x="60" y="56" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#333">STEEL</text>
+</svg>

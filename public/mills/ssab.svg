@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="SSAB">
+  <rect width="200" height="80" fill="#fff"/>
+  <rect x="20" y="22" width="48" height="36" rx="3" fill="#0057A0"/>
+  <text x="28" y="46" font-family="Arial Black, Arial, sans-serif" font-size="14" fill="#fff">SSAB</text>
+  <text x="80" y="48" font-family="Arial Black, Arial, sans-serif" font-size="28" fill="#0057A0">SSAB</text>
+</svg>

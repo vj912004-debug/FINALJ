@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" role="img" aria-label="ESSAR Steel">
+  <rect width="220" height="80" fill="#fff"/>
+  <text x="20" y="48" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1a1a1a">ESSAR</text>
+  <text x="110" y="48" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#C8102E">STEEL</text>
+  <circle cx="195" cy="40" r="10" fill="none" stroke="#C8102E" stroke-width="3"/>
+  <path d="M190 40 h10 M195 35 v10" stroke="#C8102E" stroke-width="2"/>
+</svg>

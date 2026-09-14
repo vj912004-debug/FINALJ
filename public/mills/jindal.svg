@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-label="Jindal Steel &amp; Power">
+  <rect width="240" height="80" fill="#fff"/>
+  <circle cx="28" cy="40" r="14" fill="#E31C23"/>
+  <text x="50" y="36" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#222">JINDAL STEEL</text>
+  <text x="50" y="56" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#E31C23">&amp; POWER</text>
+</svg>

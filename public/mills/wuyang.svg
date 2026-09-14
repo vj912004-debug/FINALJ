@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="Wuyang">
+  <rect width="200" height="80" fill="#fff"/>
+  <circle cx="40" cy="40" r="16" fill="#C41E3A"/>
+  <text x="40" y="46" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#fff">五羊</text>
+  <text x="70" y="48" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#C41E3A">WUYANG</text>
+</svg>
