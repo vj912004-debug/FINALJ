@@ -13,7 +13,10 @@ export default function Footer() {
   if (pathname === "/landing") return null;
 
   return (
-    <footer className="border-t border-white/10 bg-navy pb-[max(1rem,env(safe-area-inset-bottom))] text-white">
+    <footer
+      id="site-footer"
+      className="border-t border-white/10 bg-navy pb-[max(1rem,env(safe-area-inset-bottom))] text-white"
+    >
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:gap-10 sm:px-6 sm:py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
           <Link href="/" className="inline-block">
@@ -113,7 +116,7 @@ export default function Footer() {
               Send grade, size and DXF — we respond with stock and processing options.
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex w-full flex-wrap gap-2 sm:w-auto sm:justify-end">
             <Link href="/quote" className="btn btn-primary btn-shine">
               Get a Quote
             </Link>

@@ -7,11 +7,16 @@ import { heroMedia } from "@/data/site";
 type Props = {
   className?: string;
   overlayClassName?: string;
+  /** Force image-only (no video), e.g. for mobile-first sections */
+  imageOnly?: boolean;
 };
+
+const MOBILE_MAX = "(max-width: 767px)";
 
 export default function VideoBackground({
   className = "",
   overlayClassName = "bg-gradient-to-br from-navy/70 via-navy/45 to-[#012a3c]/65",
+  imageOnly = false,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -20,18 +25,33 @@ export default function VideoBackground({
   const [allowVideo, setAllowVideo] = useState(false);
 
   useEffect(() => {
+    if (imageOnly) {
+      setAllowVideo(false);
+      return;
+    }
+
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mqMobile = window.matchMedia(MOBILE_MAX);
     const saveData =
       "connection" in navigator &&
       Boolean(
         (navigator as Navigator & { connection?: { saveData?: boolean } })
           .connection?.saveData,
       );
-    const update = () => setAllowVideo(!(mqReduce.matches || saveData));
+
+    const update = () => {
+      // Phones: static plant image only — no video hero
+      setAllowVideo(!(mqReduce.matches || mqMobile.matches || saveData));
+    };
+
     update();
     mqReduce.addEventListener("change", update);
-    return () => mqReduce.removeEventListener("change", update);
-  }, []);
+    mqMobile.addEventListener("change", update);
+    return () => {
+      mqReduce.removeEventListener("change", update);
+      mqMobile.removeEventListener("change", update);
+    };
+  }, [imageOnly]);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -73,14 +93,14 @@ export default function VideoBackground({
         alt=""
         fill
         priority
-        className="object-cover"
+        className="object-cover object-[center_28%] sm:object-center"
         sizes="100vw"
       />
       {allowVideo ? (
         <video
           ref={videoRef}
           key={src}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
           autoPlay
           muted
           loop
