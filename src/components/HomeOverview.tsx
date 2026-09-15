@@ -19,6 +19,7 @@ import {
 } from "@/components/motion/Motion";
 import SpotlightCard from "@/components/ui/spotlight-card";
 import { ClipReveal } from "@/components/ui/text-reveal";
+import GradeMotionPanel from "@/components/ui/grade-motion-panel";
 
 const teasers = [
   {
@@ -26,36 +27,42 @@ const teasers = [
     title: "Processing",
     blurb: "CNC profile, 12 kW laser, drilling, oxy-fuel and UT under one roof.",
     image: plantImages.laser,
+    visual: "image" as const,
   },
   {
     href: "/machinery",
     title: "Machinery",
     blurb: "Large-format beds up to approx. 3000 × 12000 mm for heavy plate work.",
     image: plantImages.cnc,
+    visual: "image" as const,
   },
   {
     href: "/facilities",
     title: "Infrastructure",
     blurb: "26,000 sq. ft. shed, 75,000 sq. ft. yard and 4×20T overhead cranes.",
     image: plantImages.shed,
+    visual: "image" as const,
   },
   {
     href: "/grades",
     title: "Material Grades",
     blurb: "Structural, boiler, alloy and wear-resistant plates — stock & indent.",
     image: plantImages.plates,
+    visual: "grades" as const,
   },
   {
     href: "/quality",
     title: "Quality & UT",
     blurb: "ASTM A578 / EN 10160 ultrasonic testing and thickness verification.",
     image: plantImages.ut,
+    visual: "image" as const,
   },
   {
     href: "/gallery",
     title: "Gallery",
     blurb: "Plant, machines, yard handling and dispatch visuals.",
     image: plantImages.dispatch,
+    visual: "image" as const,
   },
 ] as const;
 
@@ -143,13 +150,21 @@ export default function HomeOverview() {
                 <SpotlightCard className="card-panel h-full overflow-hidden border-0 shadow-none">
                   <Link href={item.href} className="group flex h-full flex-col">
                     <div className="relative aspect-[16/10] overflow-hidden bg-navy">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
+                      {item.visual === "grades" ? (
+                        <GradeMotionPanel
+                          className="absolute inset-0 min-h-0"
+                          label="Grades"
+                          compact
+                        />
+                      ) : (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      )}
                     </div>
                     <div className="flex flex-1 flex-col p-4 sm:p-5">
                       <h3 className="font-display text-lg font-bold uppercase tracking-wide text-navy sm:text-xl">

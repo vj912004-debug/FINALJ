@@ -665,6 +665,55 @@ export const gradeCategories = [
   },
 ] as const;
 
+/** AI plate photos by category — rotated across grades for unique cards */
+export const gradeCategoryImages = {
+  structural: [
+    "/images/grades/grade-structural-a.png",
+    "/images/grades/grade-structural-b.png",
+    "/images/grades/grade-structural-c.png",
+  ],
+  boiler: [
+    "/images/grades/grade-boiler-a.png",
+    "/images/grades/grade-boiler-b.png",
+    "/images/grades/grade-boiler-c.png",
+  ],
+  alloy: [
+    "/images/grades/grade-alloy-a.png",
+    "/images/grades/grade-alloy-b.png",
+    "/images/grades/grade-alloy-c.png",
+  ],
+  wear: [
+    "/images/grades/grade-wear-a.png",
+    "/images/grades/grade-wear-b.png",
+    "/images/grades/grade-wear-c.png",
+  ],
+} as const;
+
+export type GradeCategoryId = keyof typeof gradeCategoryImages;
+
+export function gradeCategoryId(grade: string): GradeCategoryId {
+  const found = gradeCategories.find((c) =>
+    (c.grades as readonly string[]).includes(grade),
+  );
+  return (found?.id ?? "structural") as GradeCategoryId;
+}
+
+export function gradeImageFor(grade: string, index = 0): string {
+  const cat = gradeCategoryId(grade);
+  const pool = gradeCategoryImages[cat];
+  return pool[index % pool.length];
+}
+
+/** Flat list with image + category for the grades photo grid */
+export const gradesWithMedia = gradeCategories.flatMap((cat) =>
+  cat.grades.map((grade, i) => ({
+    grade,
+    categoryId: cat.id as GradeCategoryId,
+    categoryName: cat.name,
+    image: gradeCategoryImages[cat.id as GradeCategoryId][i % 3],
+  })),
+);
+
 export const products = gradeCategories.map((cat) => ({
   id: cat.id,
   name: cat.name,
