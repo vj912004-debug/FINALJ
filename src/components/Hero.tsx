@@ -42,15 +42,15 @@ export default function Hero() {
           alt=""
           fill
           priority
-          className="hero-kenburns object-cover object-[center_35%]"
+          className="object-cover object-[center_35%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/88 via-navy/70 to-[#0f1115]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/55 to-navy/92" />
         <div className="dot-grid absolute inset-0 opacity-20" />
       </div>
 
       <div
-        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-[#0f1115]/90 via-navy/65 to-navy/20 sm:block"
+        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-navy/70 via-navy/35 to-navy/20 sm:block"
         aria-hidden
       />
       {!reduce ? (

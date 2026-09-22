@@ -38,7 +38,7 @@ export default function MediaShowcase() {
           {homeMediaSlots.map((slot) => (
             <StaggerItem key={slot.title}>
               <article className="teaser-shine card-panel overflow-hidden">
-                <div className="media-kenburns media-skeleton relative aspect-[16/10] overflow-hidden">
+                <div className="media-kenburns relative aspect-[16/10] overflow-hidden bg-navy">
                   <Image
                     src={slot.src}
                     alt={slot.title}

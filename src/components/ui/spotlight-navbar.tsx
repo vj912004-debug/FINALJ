@@ -46,7 +46,7 @@ export function SpotlightNavbar({
   return (
     <div className={cn("relative flex justify-center", className)}>
       <nav
-        className="relative flex h-11 items-center gap-0 rounded-full border border-line bg-surface px-2 shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+        className="relative flex h-11 items-center gap-0 rounded-full border border-navy/10 bg-white px-2 shadow-[0_8px_30px_rgba(1,77,110,0.12)]"
         aria-label="Main navigation"
       >
         {items.map((item, idx) => {
@@ -57,9 +57,9 @@ export function SpotlightNavbar({
               href={item.href}
               onClick={() => onItemClick?.(item, idx)}
               className={cn(
-                "group/nav relative rounded-full px-3 py-2 text-[12px] font-semibold transition-colors duration-200 2xl:px-4 2xl:text-sm",
+                "relative rounded-full px-3 py-2 text-[12px] font-semibold transition-colors duration-200 2xl:px-4 2xl:text-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40",
-                active ? "text-white" : "text-steel hover:text-white",
+                active ? "text-navy" : "text-steel hover:text-navy",
               )}
             >
               {active && !reduce ? (
@@ -73,10 +73,6 @@ export function SpotlightNavbar({
                 <span className="absolute inset-0 rounded-full bg-navy/8" aria-hidden />
               ) : null}
               <span className="relative z-10">{item.label}</span>
-              <span
-                className="pointer-events-none absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-brand transition-transform duration-300 group-hover/nav:scale-x-100"
-                aria-hidden
-              />
               {active ? (
                 <motion.span
                   layoutId="nav-underline"
