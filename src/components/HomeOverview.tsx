@@ -12,7 +12,6 @@ import {
 } from "@/data/site";
 import {
   FadeIn,
-  MagneticCard,
   RiseIn,
   StaggerChildren,
   StaggerItem,
@@ -20,6 +19,7 @@ import {
 import SpotlightCard from "@/components/ui/spotlight-card";
 import { ClipReveal } from "@/components/ui/text-reveal";
 import GradeMotionPanel from "@/components/ui/grade-motion-panel";
+import ProcessTimeline from "@/components/ProcessTimeline";
 
 const teasers = [
   {
@@ -215,20 +215,7 @@ export default function HomeOverview() {
             </Link>
           </FadeIn>
 
-          <StaggerChildren className="process-rail mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
-            {processFlow.map((step, index) => (
-              <StaggerItem key={step}>
-                <MagneticCard className="h-full border border-white/15 bg-white/5 p-3 transition-colors hover:border-brand/50 hover:bg-white/10 sm:p-4">
-                  <p className="font-display text-2xl font-bold text-brand sm:text-3xl">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <p className="mt-2 text-[11px] font-semibold uppercase leading-snug tracking-wide sm:text-xs">
-                    {step}
-                  </p>
-                </MagneticCard>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
+          <ProcessTimeline steps={processFlow} />
         </div>
       </section>
 

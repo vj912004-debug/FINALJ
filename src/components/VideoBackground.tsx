@@ -93,7 +93,7 @@ export default function VideoBackground({
         alt=""
         fill
         priority
-        className="object-cover object-[center_28%] sm:object-center"
+        className="hero-kenburns object-cover object-[center_28%] sm:object-center"
         sizes="100vw"
       />
       {allowVideo ? (
