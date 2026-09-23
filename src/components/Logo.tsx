@@ -1,5 +1,7 @@
+import Image from "next/image";
+
 export default function Logo({
-  className = "text-2xl sm:text-3xl",
+  className = "",
   showWordmark = false,
   variant = "light",
 }: {
@@ -7,30 +9,40 @@ export default function Logo({
   showWordmark?: boolean;
   variant?: "light" | "dark";
 }) {
-  const wordPrimary = variant === "dark" ? "text-white" : "text-navy";
+  const dark = variant === "dark";
 
   return (
-    <span className="inline-flex max-w-full min-w-0 items-center gap-2 sm:gap-3">
-      <span
-        className={`inline-flex shrink-0 items-end font-display font-black leading-none tracking-tight ${className}`}
-        aria-label="Jagdamba Procut JP logo"
-      >
-        <span className={variant === "dark" ? "text-white" : "text-navy"}>J</span>
-        <span className="text-brand">P</span>
+    <span className={`inline-flex min-w-0 items-center gap-3 ${className}`}>
+      <span className="relative h-9 w-[3.2rem] shrink-0 overflow-hidden rounded-sm bg-white sm:h-12 sm:w-[4.25rem] md:h-14 md:w-[5rem]">
+        <Image
+          src="/images/logo.png"
+          alt=""
+          fill
+          priority
+          className="object-cover object-[center_8%]"
+          sizes="96px"
+        />
       </span>
       {showWordmark ? (
         <span className="flex min-w-0 flex-col leading-none">
           <span
-            className={`truncate font-display text-[13px] font-bold uppercase tracking-[0.04em] sm:text-base md:text-lg ${wordPrimary}`}
+            className={`font-display text-[13px] font-semibold uppercase tracking-[0.02em] sm:text-xl md:text-2xl ${
+              dark ? "text-white" : "text-navy"
+            }`}
           >
-            Jagdamba Procut
+            Jagdamba <span className="text-brand">Procut</span>
           </span>
-          <span className="mt-0.5 truncate text-[9px] uppercase tracking-[0.12em] text-brand sm:mt-1 sm:text-[10px] sm:tracking-[0.14em]">
-            <span className="sm:hidden">Pvt. Ltd.</span>
-            <span className="hidden sm:inline">Pvt. Ltd. · Steel Processing</span>
+          <span
+            className={`mt-1 font-display text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-base md:text-lg ${
+              dark ? "text-white" : "text-navy"
+            }`}
+          >
+            Pvt. Ltd.
           </span>
         </span>
-      ) : null}
+      ) : (
+        <span className="sr-only">Jagdamba Procut Pvt. Ltd.</span>
+      )}
     </span>
   );
 }

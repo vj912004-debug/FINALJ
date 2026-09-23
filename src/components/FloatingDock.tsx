@@ -51,7 +51,7 @@ export default function FloatingDock() {
   const showCtas = !footerInView;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex justify-end p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pr-[max(0.75rem,env(safe-area-inset-right))] sm:inset-x-auto sm:bottom-6 sm:right-6 sm:left-auto sm:p-0">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] hidden justify-end p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pr-[max(0.75rem,env(safe-area-inset-right))] md:flex sm:inset-x-auto sm:bottom-6 sm:right-6 sm:left-auto sm:p-0">
       <div className="pointer-events-auto flex flex-col items-end gap-2.5">
         <AnimatePresence>
           {showTop ? (
@@ -94,11 +94,13 @@ export default function FloatingDock() {
                 href={wa}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-shine btn-shine-loop dock-pulse h-12 w-12 rounded-full border-transparent bg-[#25D366] px-0 text-white hover:bg-[#1ebe57] sm:h-12 sm:w-auto sm:rounded-sm sm:px-4"
-                aria-label="Send your requirement on WhatsApp"
+                className="group btn btn-shine btn-shine-loop dock-pulse h-14 w-14 rounded-full border-transparent bg-[#25D366] px-0 text-white hover:bg-[#1ebe57] sm:h-12 sm:w-auto sm:rounded-sm sm:px-4"
+                aria-label="Talk to sales on WhatsApp"
               >
                 <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
-                <span className="hidden text-sm font-bold sm:inline">WhatsApp Sales</span>
+                <span className="hidden text-sm font-bold sm:inline sm:max-w-0 sm:overflow-hidden sm:whitespace-nowrap sm:opacity-0 sm:transition-all sm:duration-300 sm:group-hover:max-w-40 sm:group-hover:opacity-100">
+                  Talk to Sales
+                </span>
               </a>
             </motion.div>
           ) : null}

@@ -48,25 +48,33 @@ export default function MachineryGrid({
           {items.map((m) => (
             <StaggerItem key={m.id}>
               <article className="card-panel flex h-full flex-col overflow-hidden">
-                <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-navy">
+                <div className="group relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-navy" data-cursor="view">
                   <Image
                     src={m.image}
                     alt={m.title}
                     fill
-                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                </div>
-                <div className="flex flex-1 flex-col gap-3 p-6 sm:p-8">
-                  <h3 className="font-display text-2xl font-bold uppercase leading-snug text-navy">
-                    {m.title}
-                  </h3>
-                  <p className="inline-block max-w-full break-words bg-brand px-2.5 py-1 text-[10px] font-bold uppercase leading-snug tracking-wider text-white sm:text-[11px]">
+                  <span className="tech-scan" aria-hidden />
+                  <p className="absolute left-3 top-3 bg-white/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">
                     {m.capacity}
                   </p>
-                  <p className="text-sm font-semibold text-peacock">
-                    Processing size: {m.bedSize}
-                  </p>
+                </div>
+                <div className="flex flex-1 flex-col gap-4 p-6 sm:p-8">
+                  <h3 className="font-display text-2xl font-semibold uppercase leading-snug text-ink">
+                    {m.title}
+                  </h3>
+                  <dl className="grid grid-cols-2 gap-px border border-line bg-line text-left">
+                    <div className="bg-white p-3">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-steel">Capacity</dt>
+                      <dd className="mt-1 text-sm font-semibold text-ink">{m.capacity}</dd>
+                    </div>
+                    <div className="bg-white p-3">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-steel">Size</dt>
+                      <dd className="mt-1 text-sm font-semibold text-ink">{m.bedSize}</dd>
+                    </div>
+                  </dl>
                   <p className="text-sm leading-relaxed text-steel">{m.summary}</p>
                   <ul className="mt-auto space-y-2 border-t border-line pt-5">
                     {m.details.map((d) => (

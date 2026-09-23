@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import {
   motion,
@@ -111,9 +112,43 @@ function LogoMarquee({
   );
 }
 
-export default function Resources() {
+export default function Resources({ compact = false }: { compact?: boolean }) {
   const rowA = mills.slice(0, 5);
   const rowB = mills.slice(5);
+
+  if (compact) {
+    return (
+      <section className="overflow-hidden border-y border-line bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand">
+                Steel From Leading Mills
+              </p>
+              <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+                Our Resources
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-steel">
+                Materials from leading Indian and international steel manufacturers,
+                with applicable Mill Test Certificates and traceability documents.
+              </p>
+            </div>
+            <Link
+              href="/resources"
+              className="link-underline text-xs font-bold uppercase tracking-wider text-brand"
+            >
+              All material sources
+            </Link>
+          </FadeIn>
+        </div>
+
+        <div className="mt-10 space-y-4" aria-label="Steel mill logos">
+          <LogoMarquee items={rowA} direction="left" speed={36} />
+          <LogoMarquee items={rowB} direction="right" speed={32} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="overflow-hidden bg-surface py-0">

@@ -24,10 +24,10 @@ export function FadeIn({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewport}
-      transition={{ duration: 0.45, delay, ease }}
+      transition={{ duration: 0.6, delay, ease }}
     >
       {children}
     </motion.div>
@@ -45,10 +45,10 @@ export function ScaleIn({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 1.05 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={viewport}
-      transition={{ duration: 0.4, delay, ease }}
+      transition={{ duration: 0.7, delay, ease }}
     >
       {children}
     </motion.div>
@@ -120,11 +120,11 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 16 },
+        hidden: { opacity: 0, y: 40 },
         show: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.38, ease },
+          transition: { duration: 0.6, ease },
         },
       }}
     >

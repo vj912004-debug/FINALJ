@@ -12,11 +12,11 @@ import {
 } from "@/data/site";
 import {
   FadeIn,
-  MagneticCard,
   RiseIn,
   StaggerChildren,
   StaggerItem,
 } from "@/components/motion/Motion";
+import ProcessTimeline from "@/components/ProcessTimeline";
 import SpotlightCard from "@/components/ui/spotlight-card";
 import { ClipReveal } from "@/components/ui/text-reveal";
 import GradeMotionPanel from "@/components/ui/grade-motion-panel";
@@ -186,25 +186,17 @@ export default function HomeOverview() {
         </div>
       </section>
 
-      <section className="section-atmosphere-navy relative overflow-hidden bg-navy py-14 text-white sm:py-16">
-        <div
-          className="ambient-orb ambient-orb--peacock -left-10 top-10 h-40 w-40"
-          aria-hidden
-        />
-        <div
-          className="ambient-orb ambient-orb--brand -right-8 bottom-6 h-48 w-48"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="border-y border-line bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand sm:text-sm">
-                End-to-End
+                Process
               </p>
-              <h2 className="mt-2 font-display text-2xl font-bold uppercase tracking-tight sm:text-3xl">
+              <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
                 From Stock to Delivery
               </h2>
-              <p className="mt-2 text-sm text-peacock">{processTagline}</p>
+              <p className="mt-2 max-w-xl text-sm text-steel">{processTagline}</p>
             </div>
             <Link
               href="/services"
@@ -214,21 +206,7 @@ export default function HomeOverview() {
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </FadeIn>
-
-          <StaggerChildren className="process-rail mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
-            {processFlow.map((step, index) => (
-              <StaggerItem key={step}>
-                <MagneticCard className="h-full border border-white/15 bg-white/5 p-3 transition-colors hover:border-brand/50 hover:bg-white/10 sm:p-4">
-                  <p className="font-display text-2xl font-bold text-brand sm:text-3xl">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <p className="mt-2 text-[11px] font-semibold uppercase leading-snug tracking-wide sm:text-xs">
-                    {step}
-                  </p>
-                </MagneticCard>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
+          <ProcessTimeline steps={processFlow} />
         </div>
       </section>
 

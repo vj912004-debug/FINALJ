@@ -28,25 +28,22 @@ export function SpotlightNavbar({
   ],
   className,
   onItemClick,
-  defaultActiveIndex = 0,
+  defaultActiveIndex = -1,
 }: SpotlightNavbarProps) {
   const pathname = usePathname();
   const reduce = useReducedMotion();
 
-  const activeFromPath = Math.max(
-    0,
-    items.findIndex((item) => {
-      if (item.href === "/") return pathname === "/";
-      return pathname === item.href || pathname.startsWith(`${item.href}/`);
-    }),
-  );
+  const matchedIndex = items.findIndex((item) => {
+    if (item.href === "/") return pathname === "/";
+    return pathname === item.href || pathname.startsWith(`${item.href}/`);
+  });
 
-  const activeIndex = activeFromPath >= 0 ? activeFromPath : defaultActiveIndex;
+  const activeIndex = matchedIndex >= 0 ? matchedIndex : defaultActiveIndex;
 
   return (
     <div className={cn("relative flex justify-center", className)}>
       <nav
-        className="relative flex h-11 items-center gap-0 rounded-full border border-navy/10 bg-white px-2 shadow-[0_8px_30px_rgba(1,77,110,0.12)]"
+        className="relative flex h-11 items-center gap-0 rounded-full border border-navy/10 bg-white px-2 shadow-[0_8px_30px_rgba(11,35,72,0.12)]"
         aria-label="Main navigation"
       >
         {items.map((item, idx) => {

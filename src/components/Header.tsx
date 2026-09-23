@@ -17,11 +17,12 @@ function isActive(pathname: string, href: string) {
 const spotlightItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  { label: "Capabilities", href: "/services" },
   { label: "Machinery", href: "/machinery" },
   { label: "Grades", href: "/grades" },
   { label: "Quality", href: "/quality" },
-  { label: "Contact", href: "/contact" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Industries", href: "/industries" },
 ];
 
 export default function Header() {
@@ -62,7 +63,11 @@ export default function Header() {
   if (pathname === "/landing") return null;
 
   return (
-    <header className={`sticky top-0 z-50 ${elevated ? "header-elevated" : ""}`}>
+    <header
+      className={`sticky top-0 z-50 transition-[box-shadow,background] duration-300 ${
+        elevated ? "header-elevated header-glass" : ""
+      }`}
+    >
       <div className="hidden bg-navy text-white sm:block">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2 text-[11px] leading-relaxed sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:px-8 lg:text-xs">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-steel-light">
@@ -93,11 +98,15 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="border-b border-line bg-surface/98">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2 sm:gap-3 sm:px-6 sm:py-3 lg:px-8">
+      <div
+        className={`border-b border-line transition-[background,padding] duration-300 ${
+          elevated ? "bg-transparent" : "bg-surface/95"
+        }`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-2.5 sm:px-6 sm:py-3 lg:px-8">
           <Link
             href="/"
-            className="group min-w-0 max-w-[70%] shrink"
+            className="group shrink-0"
             onClick={() => setOpen(false)}
           >
             <Logo showWordmark />
@@ -108,18 +117,12 @@ export default function Header() {
           </div>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <Link href="/quote" className="btn btn-primary btn-shine px-4 py-2 text-xs">
-              Get Quote
+            <Link href="/quote" data-cursor="go" className="btn btn-primary btn-shine px-4 py-2 text-xs">
+              Get a Quote
             </Link>
           </div>
 
           <div className="flex shrink-0 items-center gap-2 lg:hidden">
-            <Link
-              href="/quote"
-              className="btn btn-primary inline-flex min-h-10 px-3 py-2 text-[11px]"
-            >
-              Quote
-            </Link>
             <button
               type="button"
               className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm border border-line p-2 text-navy"
@@ -136,7 +139,7 @@ export default function Header() {
         {open ? (
           <div
             id="mobile-nav"
-            className="fixed inset-x-0 bottom-0 top-[52px] z-50 overflow-y-auto overscroll-contain border-t border-line bg-surface px-4 py-4 pb-[max(6rem,calc(env(safe-area-inset-bottom)+5rem))] sm:top-[92px] lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-[60px] z-50 overflow-y-auto overscroll-contain border-t border-line bg-white px-4 py-4 pb-[max(6rem,calc(env(safe-area-inset-bottom)+5rem))] sm:top-[92px] lg:hidden"
           >
             {/* Compact mobile contact strip */}
             <div className="mb-3 flex flex-wrap gap-2 sm:hidden">
@@ -178,7 +181,7 @@ export default function Header() {
                 className="mt-3 min-h-12 bg-brand px-4 py-3.5 text-center text-sm font-semibold text-white"
                 onClick={() => setOpen(false)}
               >
-                Get Quote
+                Get a Quote
               </Link>
             </nav>
           </div>

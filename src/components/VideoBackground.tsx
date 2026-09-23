@@ -15,7 +15,7 @@ const MOBILE_MAX = "(max-width: 767px)";
 
 export default function VideoBackground({
   className = "",
-  overlayClassName = "bg-gradient-to-br from-navy/70 via-navy/45 to-[#012a3c]/65",
+  overlayClassName = "bg-gradient-to-br from-navy/70 via-navy/45 to-[#06152d]/65",
   imageOnly = false,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -93,14 +93,14 @@ export default function VideoBackground({
         alt=""
         fill
         priority
-        className="object-cover object-[center_28%] sm:object-center"
+        className="hero-settle object-cover object-[center_28%] sm:object-center"
         sizes="100vw"
       />
       {allowVideo ? (
         <video
           ref={videoRef}
           key={src}
-          className="absolute inset-0 hidden h-full w-full object-cover md:block"
+          className="hero-settle absolute inset-0 hidden h-full w-full object-cover md:block"
           autoPlay
           muted
           loop

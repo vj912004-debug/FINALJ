@@ -17,7 +17,7 @@ export default function QualityContent() {
   return (
     <section className="section-atmosphere steel-mesh bg-surface py-16 sm:py-20">
       <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
-        <ClipReveal className="banner-media relative overflow-hidden border border-line shadow-[0_28px_60px_-36px_rgba(1,77,110,0.5)]">
+        <ClipReveal className="banner-media group relative overflow-hidden border border-line">
           <Image
             src={plantImages.ut}
             alt="Ultrasonic testing of steel plates"
@@ -26,10 +26,15 @@ export default function QualityContent() {
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent" />
-          <p className="absolute bottom-4 left-4 font-display text-xl font-bold uppercase text-white sm:bottom-6 sm:left-6 sm:text-2xl">
-            Quality You Can Verify
-          </p>
+          <span className="tech-scan" aria-hidden />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+          <div className="absolute bottom-4 left-4 right-4 grid gap-2 sm:bottom-6 sm:left-6 sm:grid-cols-3">
+            {["Material verification", "Ultrasonic testing", "Dimensional inspection"].map((label, i) => (
+              <p key={label} className="border border-white/30 bg-black/35 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+                {String(i + 1).padStart(2, "0")} {label}
+              </p>
+            ))}
+          </div>
         </ClipReveal>
 
         <RiseIn className="border border-line bg-background p-6 shadow-[0_20px_50px_-40px_rgba(1,77,110,0.35)] sm:p-8">
