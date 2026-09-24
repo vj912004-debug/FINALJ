@@ -79,6 +79,15 @@ export const plantImages = {
   dispatch: "/images/plant/loading-dispatch.png",
   components: "/images/plant/finished-components.png",
   ut: "/images/plant/ut-testing.png",
+  thickness: "/images/plant/thickness-meter.png",
+  rings: "/images/plant/steel-rings.png",
+  circles: "/images/plant/steel-circles.png",
+  flanges: "/images/plant/steel-flanges.png",
+  profiles: "/images/plant/large-profiles.png",
+  hydra: "/images/plant/hydra-crane.png",
+  loading: "/images/plant/loading-plates.png",
+  unloading: "/images/plant/unloading-plates.png",
+  trailer: "/images/plant/steel-trailer.png",
 } as const;
 
 export const homeCarouselImages = [
@@ -470,7 +479,7 @@ export const services: Service[] = [
       "Special grade verification",
     ],
     icon: "zap",
-    image: plantImages.ut,
+    image: plantImages.thickness,
   },
 ];
 
@@ -852,15 +861,15 @@ export const galleryCategories = [
   { id: "cnc-drilling", title: "CNC Drilling", image: plantImages.drilling },
   { id: "heavy-plate-cutting", title: "Heavy Plate Cutting", image: plantImages.oxy },
   { id: "20-ton-cranes", title: "20 Ton Cranes", image: plantImages.crane },
-  { id: "hydra", title: "Hydra", image: plantImages.dispatch },
-  { id: "loading", title: "Loading", image: plantImages.dispatch },
-  { id: "unloading", title: "Unloading", image: plantImages.crane },
-  { id: "trailers", title: "Trailers", image: plantImages.dispatch },
+  { id: "hydra", title: "Hydra", image: plantImages.hydra },
+  { id: "loading", title: "Loading", image: plantImages.loading },
+  { id: "unloading", title: "Unloading", image: plantImages.unloading },
+  { id: "trailers", title: "Trailers", image: plantImages.trailer },
   { id: "finished-components", title: "Finished Components", image: plantImages.components },
-  { id: "rings", title: "Rings", image: plantImages.components },
-  { id: "circles", title: "Circles", image: plantImages.components },
-  { id: "flanges", title: "Flanges", image: plantImages.components },
-  { id: "large-profiles", title: "Large Profiles", image: plantImages.cnc },
+  { id: "rings", title: "Rings", image: plantImages.rings },
+  { id: "circles", title: "Circles", image: plantImages.circles },
+  { id: "flanges", title: "Flanges", image: plantImages.flanges },
+  { id: "large-profiles", title: "Large Profiles", image: plantImages.profiles },
   { id: "dispatch", title: "Dispatch", image: plantImages.dispatch },
 ] as const;
 
@@ -869,37 +878,37 @@ export const galleryVideos = [
     id: "video-all-grades",
     title: "All Grades Available",
     src: "/videos/gallery/all-grades-available.mp4",
-    poster: plantImages.plates,
+    poster: "/images/plant/poster-all-grades.png",
   },
   {
     id: "video-fast-delivery",
     title: "Fast Delivery",
     src: "/videos/gallery/fast-delivery.mp4",
-    poster: plantImages.dispatch,
+    poster: "/images/plant/poster-fast-delivery.png",
   },
   {
     id: "video-grade-wise-code",
     title: "Grade-wise Code",
     src: "/videos/gallery/grade-wise-code.mp4",
-    poster: plantImages.plates,
+    poster: "/images/plant/poster-grade-code.png",
   },
   {
     id: "video-heavy-plate",
     title: "Heavy Plate Cutting",
     src: "/videos/gallery/heavy-plate-cutting.mp4",
-    poster: plantImages.oxy,
+    poster: "/images/plant/poster-heavy-plate.png",
   },
   {
     id: "video-since",
     title: "Company Video",
     src: "/videos/gallery/since.mp4",
-    poster: plantImages.factory,
+    poster: "/images/plant/poster-company.png",
   },
   {
     id: "video-plant",
     title: "Plant Video",
     src: "/videos/gallery/plant-video.mp4",
-    poster: plantImages.shed,
+    poster: "/images/plant/poster-plant.png",
   },
 ] as const;
 

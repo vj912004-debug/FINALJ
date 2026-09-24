@@ -103,13 +103,18 @@ export default function Products() {
     [active],
   );
 
-  const gradePhotos = useMemo(
-    () =>
+  const gradePhotos = useMemo(() => {
+    const list =
       active === "all"
         ? gradesWithMedia
-        : gradesWithMedia.filter((g) => g.categoryId === active),
-    [active],
-  );
+        : gradesWithMedia.filter((g) => g.categoryId === active);
+    const seen = new Set<string>();
+    return list.filter((g) => {
+      if (seen.has(g.image)) return false;
+      seen.add(g.image);
+      return true;
+    });
+  }, [active]);
 
   return (
     <section className="section-atmosphere steel-mesh bg-background py-16 sm:py-20">
