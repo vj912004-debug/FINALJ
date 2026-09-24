@@ -864,6 +864,45 @@ export const galleryCategories = [
   { id: "dispatch", title: "Dispatch", image: plantImages.dispatch },
 ] as const;
 
+export const galleryVideos = [
+  {
+    id: "video-all-grades",
+    title: "All Grades Available",
+    src: "/videos/gallery/all-grades-available.mp4",
+    poster: plantImages.plates,
+  },
+  {
+    id: "video-fast-delivery",
+    title: "Fast Delivery",
+    src: "/videos/gallery/fast-delivery.mp4",
+    poster: plantImages.dispatch,
+  },
+  {
+    id: "video-grade-wise-code",
+    title: "Grade-wise Code",
+    src: "/videos/gallery/grade-wise-code.mp4",
+    poster: plantImages.plates,
+  },
+  {
+    id: "video-heavy-plate",
+    title: "Heavy Plate Cutting",
+    src: "/videos/gallery/heavy-plate-cutting.mp4",
+    poster: plantImages.oxy,
+  },
+  {
+    id: "video-since",
+    title: "Company Video",
+    src: "/videos/gallery/since.mp4",
+    poster: plantImages.factory,
+  },
+  {
+    id: "video-plant",
+    title: "Plant Video",
+    src: "/videos/gallery/plant-video.mp4",
+    poster: plantImages.shed,
+  },
+] as const;
+
 export const downloads = [
   {
     id: "company-profile",

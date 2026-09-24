@@ -6,7 +6,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "Photo & Video Gallery",
   description:
-    "Factory, covered shed, open yard, CNC, laser, cranes, Hydra, loading and finished components gallery — drone and plant videos supported.",
+    "Plant photos plus videos for grades, heavy plate cutting, delivery and factory operations at Jagdamba Procut, Vadodara.",
 };
 
 export default function GalleryPage() {
@@ -15,7 +15,7 @@ export default function GalleryPage() {
       <PageBanner
         eyebrow="Gallery"
         title="Photo & Video Gallery"
-        description="Professional coverage of plant, machines, stock, handling and dispatch."
+        description="Plant photos and videos — grades, heavy plate cutting, delivery and factory operations."
       />
       <GalleryGrid />
       <FinalCTA />

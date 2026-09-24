@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { ArrowRight, X } from "lucide-react";
-import { galleryCategories } from "@/data/site";
+import { ArrowRight, Play, X } from "lucide-react";
+import { galleryCategories, galleryVideos } from "@/data/site";
 import {
   FadeIn,
   RiseIn,
@@ -12,32 +12,56 @@ import {
 } from "@/components/motion/Motion";
 import TextReveal from "@/components/ui/text-reveal";
 
+type GalleryItem =
+  | { kind: "image"; id: string; title: string; image: string }
+  | { kind: "video"; id: string; title: string; image: string; src: string };
+
+const photoItems: GalleryItem[] = galleryCategories.map((c) => ({
+  kind: "image",
+  id: c.id,
+  title: c.title,
+  image: c.image,
+}));
+
+const videoItems: GalleryItem[] = galleryVideos.map((v) => ({
+  kind: "video",
+  id: v.id,
+  title: v.title,
+  image: v.poster,
+  src: v.src,
+}));
+
 const filterGroups = [
-  { id: "all", label: "All", ids: null as readonly string[] | null },
+  { id: "all", label: "All", match: () => true },
+  { id: "videos", label: "Videos", match: (item: GalleryItem) => item.kind === "video" },
   {
     id: "plant",
     label: "Plant",
-    ids: ["factory", "covered-shed", "open-yard"],
+    match: (item: GalleryItem) =>
+      ["factory", "covered-shed", "open-yard"].includes(item.id),
   },
   {
     id: "machines",
     label: "Machines",
-    ids: ["cnc-machines", "laser-machine", "cnc-drilling", "20-ton-cranes", "hydra"],
+    match: (item: GalleryItem) =>
+      ["cnc-machines", "laser-machine", "cnc-drilling", "20-ton-cranes", "hydra"].includes(item.id),
   },
   {
     id: "cutting",
     label: "Cutting",
-    ids: ["heavy-plate-cutting", "large-profiles", "rings", "circles", "flanges", "finished-components"],
+    match: (item: GalleryItem) =>
+      ["heavy-plate-cutting", "large-profiles", "rings", "circles", "flanges", "finished-components"].includes(item.id),
   },
   {
     id: "material",
     label: "Material",
-    ids: ["steel-plate-stock"],
+    match: (item: GalleryItem) => item.id === "steel-plate-stock",
   },
   {
     id: "dispatch",
     label: "Dispatch",
-    ids: ["loading", "unloading", "trailers", "dispatch"],
+    match: (item: GalleryItem) =>
+      ["loading", "unloading", "trailers", "dispatch"].includes(item.id),
   },
 ] as const;
 
@@ -45,13 +69,12 @@ export default function GalleryGrid() {
   const [active, setActive] = useState<(typeof filterGroups)[number]["id"]>("all");
   const [open, setOpen] = useState<number | null>(null);
 
+  const catalog = useMemo(() => [...videoItems, ...photoItems], []);
+
   const visible = useMemo(() => {
     const group = filterGroups.find((g) => g.id === active);
-    if (!group || !group.ids) return [...galleryCategories];
-    return galleryCategories.filter((c) =>
-      (group.ids as readonly string[]).includes(c.id),
-    );
-  }, [active]);
+    return catalog.filter((item) => group?.match(item) ?? true);
+  }, [active, catalog]);
 
   useEffect(() => {
     if (open === null) return;
@@ -79,11 +102,11 @@ export default function GalleryGrid() {
             as="h2"
             className="mt-2 font-display text-3xl font-bold uppercase tracking-tight text-navy"
           >
-            Plant · Machines · Dispatch
+            Photos & Plant Videos
           </TextReveal>
           <div className="accent-rule mx-auto mt-4" aria-hidden />
           <p className="mt-4 text-sm text-steel sm:text-base">
-            Filter by area — replace with real plant photos when ready.
+            Watch plant videos or filter stills by area.
           </p>
         </RiseIn>
 
@@ -119,26 +142,32 @@ export default function GalleryGrid() {
         </FadeIn>
 
         <StaggerChildren className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {visible.map((cat, index) => (
-            <StaggerItem key={cat.id}>
+          {visible.map((item, index) => (
+            <StaggerItem key={item.id}>
               <button
                 type="button"
                 onClick={() => setOpen(index)}
                 className="group relative w-full overflow-hidden border border-line bg-white text-left"
-                data-cursor="view"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-navy/5">
                   <Image
-                    src={cat.image}
-                    alt={cat.title}
+                    src={item.image}
+                    alt={item.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
+                  {item.kind === "video" ? (
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white">
+                        <Play className="h-5 w-5 fill-current" aria-hidden />
+                      </span>
+                    </span>
+                  ) : null}
                   <div className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/35" />
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/70 to-transparent p-3">
                     <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-white">
-                      {cat.title}
+                      {item.kind === "video" ? `Video · ${item.title}` : item.title}
                     </h3>
                     <ArrowRight className="h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
                   </div>
@@ -167,7 +196,7 @@ export default function GalleryGrid() {
             <button
               type="button"
               className="absolute left-3 top-1/2 -translate-y-1/2 px-3 py-6 text-2xl text-white"
-              aria-label="Previous image"
+              aria-label="Previous"
               onClick={(e) => {
                 e.stopPropagation();
                 setOpen((i) => (i === null ? i : (i - 1 + visible.length) % visible.length));
@@ -188,7 +217,21 @@ export default function GalleryGrid() {
                 if (dx < -40) setOpen((i) => (i === null ? i : (i + 1) % visible.length));
               }}
             >
-              <Image src={current.image} alt={current.title} fill className="object-contain" sizes="90vw" />
+              {current.kind === "video" ? (
+                <video
+                  key={current.src}
+                  className="h-full w-full bg-black object-contain"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={current.image}
+                  autoPlay
+                >
+                  <source src={current.src} type="video/mp4" />
+                </video>
+              ) : (
+                <Image src={current.image} alt={current.title} fill className="object-contain" sizes="90vw" />
+              )}
               <figcaption className="absolute bottom-0 left-0 bg-black/60 px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white">
                 {current.title}
               </figcaption>
@@ -196,7 +239,7 @@ export default function GalleryGrid() {
             <button
               type="button"
               className="absolute right-3 top-1/2 -translate-y-1/2 px-3 py-6 text-2xl text-white"
-              aria-label="Next image"
+              aria-label="Next"
               onClick={(e) => {
                 e.stopPropagation();
                 setOpen((i) => (i === null ? i : (i + 1) % visible.length));
