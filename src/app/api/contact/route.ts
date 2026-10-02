@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import { mkdir, writeFile } from "fs/promises";
-import path from "path";
 import { prisma } from "@/lib/prisma";
 import { validateContactInquiry } from "@/lib/validators/contact";
 
@@ -16,27 +14,6 @@ async function parseBody(request: Request) {
       return typeof v === "string" ? v : "";
     };
 
-    const files = form
-      .getAll("files")
-      .filter((f): f is File => typeof File !== "undefined" && f instanceof File);
-
-    const savedNames: string[] = [];
-    if (files.length) {
-      const dir = path.join(process.cwd(), "uploads", "enquiries");
-      await mkdir(dir, { recursive: true });
-      for (const file of files.slice(0, 5)) {
-        if (file.size > 10 * 1024 * 1024) continue;
-        const safe = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
-        const buf = Buffer.from(await file.arrayBuffer());
-        await writeFile(path.join(dir, safe), buf);
-        savedNames.push(safe);
-      }
-    }
-
-    const specs = [get("specifications"), savedNames.length ? `Saved files: ${savedNames.join(", ")}` : ""]
-      .filter(Boolean)
-      .join("\n");
-
     return {
       fullName: get("fullName") || get("customerName"),
       companyName: get("companyName"),
@@ -45,7 +22,7 @@ async function parseBody(request: Request) {
       materialGrade: get("materialGrade") || get("grade"),
       thickness: get("thickness"),
       quantity: get("quantity"),
-      specifications: specs,
+      specifications: get("specifications"),
     };
   }
 
@@ -89,9 +66,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("[POST /api/contact]", error);
     const message =
-      error instanceof Error && error.message.includes("Can't reach database")
-        ? "Unable to save the enquiry right now. Please send your requirement on WhatsApp or email."
-        : "Unable to save the enquiry right now. Please send your requirement on WhatsApp or email.";
+      "Unable to save the enquiry right now. Please send your requirement on WhatsApp or email.";
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

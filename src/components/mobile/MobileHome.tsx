@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FileUp, MessageCircle, Play } from "lucide-react";
+import { MessageCircle, Play } from "lucide-react";
 import {
   company,
   galleryVideos,
@@ -10,6 +10,7 @@ import {
   stats,
 } from "@/data/site";
 import Resources from "@/components/Resources";
+import CountUp from "@/components/ui/count-up";
 
 const shortcuts = [
   { href: "/services", label: "Capabilities", image: plantImages.laser },
@@ -25,7 +26,7 @@ export default function MobileHome() {
   return (
     <div className="bg-background md:hidden">
       <section className="relative overflow-hidden text-white">
-        <div className="relative h-[58vh] min-h-[420px]">
+        <div className="relative h-[62vh] min-h-[460px]">
           <Image
             src={plantImages.factory}
             alt="Jagdamba Procut plant"
@@ -37,23 +38,22 @@ export default function MobileHome() {
           <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-navy/25" />
           <div className="absolute inset-x-0 bottom-0 px-4 pb-6">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75">
-              Vadodara · Steel Processing
+              {company.name} · Vadodara
             </p>
-            <h1 className="mt-2 font-display text-[2.1rem] font-semibold uppercase leading-[0.95] tracking-tight">
-              Jagdamba <span className="text-brand">Procut</span>
+            <h1 className="mt-2 font-display text-[2.15rem] font-semibold uppercase leading-[0.95] tracking-tight">
+              Precision Steel Processing.{" "}
+              <span className="text-brand">Built for Industry.</span>
             </h1>
-            <p className="mt-2 font-display text-xl font-semibold uppercase tracking-[0.12em]">
-              Pvt. Ltd.
-            </p>
-            <p className="mt-3 text-sm font-medium text-white/90">
-              Precision in Steel. Strength in Every Cut.
+            <p className="mt-3 text-sm leading-relaxed text-white/90">
+              Your trusted partner for steel plate stockholding, CNC profile cutting, laser
+              cutting, drilling, and quality-controlled material processing.
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-2 bg-navy px-4 pb-4">
-          <Link href="/quote" className="btn btn-primary btn-shine-loop min-h-12 text-sm">
-            Get a Quote
+          <Link href="/quote" className="btn btn-primary btn-shine-loop min-h-12 px-3 text-sm">
+            Request a Quote
           </Link>
           <a
             href={homeCtas[2].href}
@@ -64,9 +64,8 @@ export default function MobileHome() {
             <MessageCircle className="h-4 w-4" aria-hidden />
             WhatsApp
           </a>
-          <Link href="/quote#upload" className="btn btn-ghost-light col-span-2 min-h-12 text-sm">
-            <FileUp className="h-4 w-4" aria-hidden />
-            Upload Drawing
+          <Link href="/services" className="btn btn-ghost-light col-span-2 min-h-12 text-sm">
+            Explore Our Capabilities
           </Link>
         </div>
       </section>
@@ -146,8 +145,8 @@ export default function MobileHome() {
         <div className="mt-4 grid grid-cols-2 gap-px bg-line">
           {stats.map((stat) => (
             <article key={stat.label} className="bg-white px-3 py-4">
-              <p className="font-display text-2xl font-semibold tabular-nums text-navy">
-                {stat.value}
+              <p className="font-display text-2xl font-semibold text-navy">
+                <CountUp value={stat.value} numeric={stat.numeric} suffix={stat.suffix} />
               </p>
               {stat.unit ? (
                 <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">

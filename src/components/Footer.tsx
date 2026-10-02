@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { company, navLinks } from "@/data/site";
+import { company, navLinks, seoPages } from "@/data/site";
 import Logo from "@/components/Logo";
 
 export default function Footer() {
@@ -104,6 +104,25 @@ export default function Footer() {
                 className="text-sm text-steel-light transition-colors hover:text-brand"
               >
                 {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <h3 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-brand">
+            Steel Plates &amp; Processing in Vadodara
+          </h3>
+          <nav className="mt-3 flex flex-wrap gap-x-4 gap-y-2" aria-label="Services in Vadodara">
+            {seoPages.map((page) => (
+              <Link
+                key={page.slug}
+                href={`/seo/${page.slug}`}
+                className="text-sm text-steel-light transition-colors hover:text-brand"
+              >
+                {page.h1}
               </Link>
             ))}
           </nav>

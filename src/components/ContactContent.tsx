@@ -1,7 +1,7 @@
 "use client";
 
 import { Clock3, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
-import QuoteForm from "@/components/QuoteForm";
+import RfqWizard from "@/components/enquiry/RfqWizard";
 import FinalCTA from "@/components/FinalCTA";
 import { company, departmentContacts, hasCredential } from "@/data/site";
 import {
@@ -163,7 +163,18 @@ export default function ContactContent() {
         </div>
       </section>
 
-      <QuoteForm compactHeading />
+      <section id="upload" className="section-atmosphere steel-mesh scroll-mt-24 bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-brand">Send Enquiry</p>
+          <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-tight text-navy sm:text-4xl">
+            Request a Quotation
+          </h2>
+          <div className="accent-rule mt-4" aria-hidden />
+          <div className="mt-8">
+            <RfqWizard />
+          </div>
+        </div>
+      </section>
       <FinalCTA />
     </>
   );

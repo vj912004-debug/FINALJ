@@ -7,6 +7,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUp, FileUp, MessageCircle } from "lucide-react";
 import { company } from "@/data/site";
 
+const enquiryPages = new Set(["/quote", "/stock-enquiry", "/contact", "/track"]);
+
 export default function FloatingDock() {
   const pathname = usePathname();
   const reduce = useReducedMotion();
@@ -49,6 +51,7 @@ export default function FloatingDock() {
   )}`;
 
   const showCtas = !footerInView;
+  const onEnquiryPage = enquiryPages.has(pathname);
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] hidden justify-end p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pr-[max(0.75rem,env(safe-area-inset-right))] md:flex sm:inset-x-auto sm:bottom-6 sm:right-6 sm:left-auto sm:p-0">
@@ -81,14 +84,16 @@ export default function FloatingDock() {
               exit={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.22 }}
             >
-              <Link
-                href="/quote"
-                className="btn btn-primary btn-shine btn-shine-loop btn-pulse h-12 w-12 rounded-full px-0 sm:h-12 sm:w-auto sm:rounded-sm sm:px-4"
-                aria-label="Request a quote"
-              >
-                <FileUp className="h-5 w-5 shrink-0" aria-hidden />
-                <span className="hidden text-sm font-bold sm:inline">Get a Quote</span>
-              </Link>
+              {!onEnquiryPage ? (
+                <Link
+                  href="/quote"
+                  className="btn btn-primary btn-shine btn-shine-loop btn-pulse h-12 w-12 rounded-full px-0 sm:h-12 sm:w-auto sm:rounded-sm sm:px-4"
+                  aria-label="Request a quote"
+                >
+                  <FileUp className="h-5 w-5 shrink-0" aria-hidden />
+                  <span className="hidden text-sm font-bold sm:inline">Get a Quote</span>
+                </Link>
+              ) : null}
 
               <a
                 href={wa}

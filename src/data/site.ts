@@ -61,6 +61,7 @@ export const navLinks = [
   { href: "/vendor", label: "Vendor Registration" },
   { href: "/stock-enquiry", label: "Stock Enquiry" },
   { href: "/quote", label: "Request a Quote" },
+  { href: "/track", label: "Track Enquiry" },
   { href: "/contact", label: "Contact Us" },
 ] as const;
 
@@ -68,7 +69,8 @@ export const navLinks = [
 export const heroMedia = {
   localSrc: "/videos/gallery/plant-video.mp4",
   localWebm: "",
-  poster: "/images/plant/factory-exterior.png",
+  /** First frame of localSrc, so the swap from poster to video is seamless. */
+  poster: "/images/plant/hero-first-frame.jpg",
   /** CC0 demo industrial footage if the plant video cannot play. */
   fallbackSrc:
     "https://cdn.coverr.co/videos/coverr-a-welder-works-on-a-metal-structure-5567/1080p.mp4",
@@ -541,6 +543,11 @@ export const machinery = [
       "CNC profile cutting for precision steel plate processing — circles, rings, flanges, base plates, structural profiles and heavy engineering components.",
     bedSize: "3000 mm × 12000 mm",
     capacity: "8 Nos. CNC machines · up to 350 mm",
+    processType: "CNC profile cutting",
+    thickness: "Up to 350 mm",
+    quantityNote: "8 Nos.",
+    rfqService: "cnc-profile",
+    applications: ["Circles & rings", "Flanges", "Base plates", "Structural profiles", "Heavy engineering parts"],
     image: plantImages.cnc,
     details: [
       "8 Nos. CNC profile cutting machines",
@@ -558,6 +565,11 @@ export const machinery = [
       "High-power 12 kW laser for accurate, fast cutting with excellent edge quality on large-format plates.",
     bedSize: "3000 mm × 12000 mm",
     capacity: "12 kW high-power laser · 1 to 35 / 40 mm",
+    processType: "12 kW fibre laser cutting",
+    thickness: "1 to 35 / 40 mm (material and grade dependent)",
+    quantityNote: "1 No.",
+    rfqService: "laser",
+    applications: ["Precision parts", "Nested sheet jobs", "Brackets & gussets", "Fine-detail profiles"],
     image: plantImages.laser,
     details: [
       "Bed size 3000 mm × 12000 mm",
@@ -574,6 +586,11 @@ export const machinery = [
       "CNC drilling for precise hole patterns on steel plates and engineered components.",
     bedSize: "2500 mm × 6000 mm",
     capacity: "Holes up to 60 mm diameter",
+    processType: "CNC plate drilling",
+    thickness: "Heavy plate — per job, thickness and tooling",
+    quantityNote: "",
+    rfqService: "cnc-drilling",
+    applications: ["Base plates", "Connection plates", "Multi-hole patterns", "Flange drilling"],
     image: plantImages.drilling,
     details: [
       "CNC drilling bed size 2500 mm × 6000 mm",
@@ -589,6 +606,11 @@ export const machinery = [
       "Oxy-fuel cutting for heavy-thickness plates used in forging blanks, large rings, flanges and heavy base plates.",
     bedSize: "Heavy plate processing beds",
     capacity: "Heavy-thickness oxy-fuel cutting",
+    processType: "Oxy-fuel / pug cutting",
+    thickness: "Heavy-thickness plate",
+    quantityNote: "Multiple sets",
+    rfqService: "combined",
+    applications: ["Forging blanks", "Large rings & circles", "Heavy base plates", "Straight cutting"],
     image: plantImages.oxy,
     details: [
       "Multiple oxy / pug cutting sets available",
@@ -906,6 +928,85 @@ export const industriesDetailed = [
 
 export const industriesServed = industriesDetailed.map((i) => i.title);
 
+/** Focus markets — grades, standards and services are the ones listed elsewhere on this site. */
+export const industryFocus = [
+  {
+    id: "heavy-engineering",
+    title: "Heavy Engineering",
+    image: plantImages.profiles,
+    overview:
+      "Thick plates and profile-cut blanks for machine frames, rings, flanges and heavy fabricated assemblies — supplied and processed at one site.",
+    services: ["CNC profile cutting up to 350 mm", "Oxy-fuel heavy plate cutting", "CNC drilling (holes up to 60 mm)", "Ultrasonic testing"],
+    materials: ["IS 2062 E350 / E450", "S355J2+N", "C45 / EN19", "42CrMo4"],
+    quality: ["MTC with heat number", "UT to ASTM A578 / EN 10160 where specified", "Dimensional inspection"],
+    links: [
+      { href: "/machinery", label: "Machinery" },
+      { href: "/grades", label: "Grades" },
+    ],
+    rfqService: "cnc-profile",
+  },
+  {
+    id: "infrastructure",
+    title: "Infrastructure",
+    image: plantImages.plates,
+    overview:
+      "Structural plates and cut-to-size parts for steelwork and project fabrication, with ready stock to support project schedules.",
+    services: ["Steel plate supply from stock", "Cut to size", "Laser-cut connection plates", "CNC drilling of base plates"],
+    materials: ["IS 2062 E250BR / E350BR", "S355JR / S355J0", "ST52-3"],
+    quality: ["Grade and thickness verification", "Heat / plate number traceability", "Mill Test Certificates"],
+    links: [
+      { href: "/facilities", label: "Infrastructure" },
+      { href: "/logistics", label: "Logistics" },
+    ],
+    rfqService: "plate-supply",
+  },
+  {
+    id: "boiler-pressure",
+    title: "Boiler & Pressure Equipment",
+    image: plantImages.ut,
+    overview:
+      "Boiler and pressure vessel quality plates with the testing and documentation that code fabrication requires.",
+    services: ["Plate supply (stock & indent)", "Profile-cut circles and blanks", "Ultrasonic testing", "Third-party inspection support"],
+    materials: ["SA516 Grade 60 / 65 / 70", "P355NL / P355NL1", "ASTM A537 Class 1 / 2", "ASTM A387 Grade 22 Class 2"],
+    quality: ["UT: ASTM A578 Level A / B / C", "UT: EN 10160 S1/E1 – S2/E3", "MTC verification and NABL testing coordination"],
+    links: [
+      { href: "/quality", label: "Quality & UT" },
+      { href: "/grades", label: "Grades" },
+    ],
+    rfqService: "combined",
+  },
+  {
+    id: "industrial-fabrication",
+    title: "Industrial Fabrication",
+    image: plantImages.components,
+    overview:
+      "Drawing and DXF-based parts — gussets, brackets, base plates and custom profiles — cut accurately and delivered ready for fabrication.",
+    services: ["12 kW laser cutting", "CNC profile cutting", "CNC drilling", "Transport & delivery"],
+    materials: ["IS 2062 E250 / E350", "S355 series", "Customer-specified grades"],
+    quality: ["Cutting accuracy inspection", "Dimensional inspection", "Thickness verification"],
+    links: [
+      { href: "/services", label: "Services" },
+      { href: "/machinery", label: "Machinery" },
+    ],
+    rfqService: "laser",
+  },
+  {
+    id: "mining-wear",
+    title: "Mining & Wear Applications",
+    image: plantImages.oxy,
+    overview:
+      "High strength and wear resistant plates processed into liners, wear parts and heavy components for mining, cement and earthmoving equipment.",
+    services: ["CNC profile cutting", "Laser cutting (thickness dependent)", "CNC drilling", "Cut to size"],
+    materials: ["Hardox 400 / 500", "Rockstar 400", "Domex 460 / 550"],
+    quality: ["Grade verification against MTC", "Thickness verification", "Plate number traceability"],
+    links: [
+      { href: "/grades", label: "Grades" },
+      { href: "/quality", label: "Quality" },
+    ],
+    rfqService: "cnc-profile",
+  },
+] as const;
+
 export const commonApplications = [
   "Base plates and connection plates",
   "Machine parts and customized components",
@@ -1013,66 +1114,115 @@ export const downloads = [
   },
 ] as const;
 
-export const seoPages = [
+export type SeoPage = {
+  slug: string;
+  /** Without the brand — the root title template appends it. */
+  title: string;
+  h1: string;
+  description: string;
+  keywords: readonly string[];
+  intro: readonly string[];
+  /** Processing service shown with its capacity details. */
+  serviceId?: Service["id"];
+  /** Grade family listed on the page. */
+  gradeCategoryId?: GradeCategoryId;
+  /** Show ASTM A578 / EN 10160 testing options. */
+  showUt?: boolean;
+  related: readonly string[];
+};
+
+export const seoPages: readonly SeoPage[] = [
   {
     slug: "cnc-profile-cutting-vadodara",
-    title: "CNC Profile Cutting in Vadodara | Jagdamba Procut",
+    title: "CNC Profile Cutting in Vadodara – Up to 350 mm",
     h1: "CNC Profile Cutting Vadodara",
     description:
-      "CNC profile cutting for steel plates in Vadodara — circles, rings, flanges, base plates and customized profiles. Bed size up to approx. 3000 × 12000 mm.",
+      "CNC profile cutting for steel plates in Vadodara — circles, rings, flanges, base plates and customized profiles. 8 CNC machines, bed 3000 × 12000 mm, up to 350 mm thickness.",
     keywords: [
       "cnc profile cutting vadodara",
       "profile cutting gujarat",
       "steel profile cutting",
     ],
+    intro: [
+      "Jagdamba Procut Pvt. Ltd. runs 8 CNC profile cutting machines at GIDC Makarpura, Vadodara, with a machine bed of 3000 mm × 12000 mm and cutting capacity up to 350 mm thickness.",
+      "We cut circles, rings, flanges, base plates, structural profiles and heavy engineering parts as per your drawing or DXF — from plates in our own stock, so material and cutting come from one supplier.",
+    ],
+    serviceId: "cnc-profile",
+    related: ["laser-cutting-vadodara", "oxy-fuel-cutting-vadodara", "cnc-drilling-vadodara", "steel-plate-supplier-vadodara"],
   },
   {
     slug: "steel-plate-supplier-vadodara",
-    title: "Steel Plate Supplier in Vadodara | Jagdamba Procut",
+    title: "Steel Plate Supplier in Vadodara – 2,500 MT Ready Stock",
     h1: "Steel Plate Supplier Vadodara",
     description:
-      "Steel plate stockist and supplier in Vadodara with approx. 2,500 MT ready stock, 75,000 sq. ft. storage yard, leading Indian mills and imported material subject to availability.",
+      "Steel plate stockist and supplier in Vadodara with approx. 2,500 MT ready stock, 3–300 mm thickness, 75,000 sq. ft. plate yard, leading Indian mills and imported material subject to availability.",
     keywords: [
       "steel plate supplier vadodara",
       "steel stockist gujarat",
       "carbon steel plates",
     ],
+    intro: [
+      "Jagdamba Procut Pvt. Ltd. has been a steel plate stockist in Vadodara since 2001, holding approx. 2,500 MT of ready stock in thicknesses from 3 mm to 300 mm across a 75,000 sq. ft. open plate yard and a 26,000 sq. ft. covered shed.",
+      "Plates are sourced from leading Indian mills — Jindal, SAIL, JSW, Tata Steel and AM/NS India — with imported / China-origin plates subject to availability, supplied with Mill Test Certificate / TC.",
+    ],
+    gradeCategoryId: "structural",
+    related: ["is2062-e350-plates", "boiler-quality-plates-vadodara", "cnc-profile-cutting-vadodara", "ultrasonic-testing-steel-plates"],
   },
   {
     slug: "laser-cutting-vadodara",
-    title: "12 kW Laser Cutting in Vadodara | Jagdamba Procut",
+    title: "12 kW Laser Cutting in Vadodara",
     h1: "Laser Cutting Vadodara",
     description:
-      "High-power 12 kW laser cutting in Vadodara for accurate, fast steel plate cutting with excellent edge finish on large-format beds.",
+      "High-power 12 kW laser cutting in Vadodara for accurate, fast steel plate cutting with excellent edge finish — bed 3000 × 12000 mm, 1 mm to 35 / 40 mm subject to material and grade.",
     keywords: [
       "laser cutting vadodara",
       "12 kw laser cutting",
       "steel laser cutting gujarat",
     ],
+    intro: [
+      "Our 12 kW high-power laser cuts steel plates on a 3000 mm × 12000 mm bed, in thicknesses from 1 mm to 35 / 40 mm depending on material and grade.",
+      "It suits precision parts, brackets, gussets and nested jobs where accuracy, edge finish and reduced wastage matter — with the plate supplied from our Vadodara stock.",
+    ],
+    serviceId: "laser",
+    related: ["cnc-profile-cutting-vadodara", "cnc-drilling-vadodara", "steel-plate-supplier-vadodara"],
   },
   {
     slug: "sa516-grade-70",
-    title: "SA516 Grade 70 Plates | Boiler Quality Steel | Jagdamba Procut",
+    title: "SA516 Grade 70 Plates – Boiler Quality Steel, Vadodara",
     h1: "SA516 Grade 70 Steel Plates",
     description:
-      "SA516 Grade 70 boiler and pressure vessel plates with supply, CNC cutting, UT and thickness verification from Vadodara.",
+      "SA516 Grade 70 boiler and pressure vessel plates with supply, CNC cutting, UT to ASTM A578 / EN 10160 and thickness verification from Vadodara.",
     keywords: [
       "sa516 grade 70",
       "boiler quality plates",
       "pressure vessel steel plates",
     ],
+    intro: [
+      "SA516 Grade 70 is one of the boiler and pressure vessel grades we supply from Vadodara, alongside SA516 Grade 60 and Grade 65.",
+      "Plates can be supplied with Mill Test Certificate, profile cut to drawing, and checked with ultrasonic testing and ultrasonic thickness measurement depending on thickness and purchase specification.",
+    ],
+    gradeCategoryId: "boiler",
+    showUt: true,
+    related: ["sa516-grade-60", "boiler-quality-plates-vadodara", "ultrasonic-testing-steel-plates", "cnc-profile-cutting-vadodara"],
   },
   {
     slug: "sa516-grade-60",
-    title: "SA516 Grade 60 Plates | Jagdamba Procut Vadodara",
+    title: "SA516 Grade 60 Plates – Boiler & Pressure Vessel, Vadodara",
     h1: "SA516 Grade 60 Steel Plates",
     description:
-      "SA516 Grade 60 plates for boiler and pressure vessel applications — stock, processing and testing support in Vadodara.",
+      "SA516 Grade 60 plates for boiler and pressure vessel applications — stock, CNC profile cutting and ultrasonic testing support in Vadodara.",
     keywords: ["sa516 grade 60", "sa516 plates", "bq plates vadodara"],
+    intro: [
+      "SA516 Grade 60 plates for boiler and pressure vessel work are part of our boiler-quality range, together with SA516 Grade 65 and Grade 70.",
+      "We support the full job from Vadodara — plate supply with MTC, CNC profile cutting, UT and thickness verification, and delivery to your factory.",
+    ],
+    gradeCategoryId: "boiler",
+    showUt: true,
+    related: ["sa516-grade-70", "boiler-quality-plates-vadodara", "ultrasonic-testing-steel-plates"],
   },
   {
     slug: "cnc-drilling-vadodara",
-    title: "CNC Drilling for Steel Plates | Vadodara | Jagdamba Procut",
+    title: "CNC Drilling for Steel Plates in Vadodara",
     h1: "CNC Drilling Vadodara",
     description:
       "CNC drilling for steel plates and engineering components in Vadodara — bed size 2500 × 6000 mm, hole diameters up to 60 mm with accurate positioning.",
@@ -1081,22 +1231,35 @@ export const seoPages = [
       "plate drilling",
       "steel hole drilling",
     ],
+    intro: [
+      "Our CNC drilling machine handles steel plates and engineered components on a 2500 mm × 6000 mm bed, with hole diameters up to 60 mm depending on thickness and tooling.",
+      "Typical work includes base plates, connection plates, flange drilling and multi-hole patterns — often combined with profile cutting so parts arrive cut and drilled.",
+    ],
+    serviceId: "cnc-drilling",
+    related: ["cnc-profile-cutting-vadodara", "laser-cutting-vadodara", "oxy-fuel-cutting-vadodara"],
   },
   {
     slug: "ultrasonic-testing-steel-plates",
-    title: "Ultrasonic Testing (UT) for Steel Plates | ASTM & EN",
+    title: "Ultrasonic Testing (UT) for Steel Plates – ASTM A578 & EN 10160",
     h1: "Ultrasonic Testing for Steel Plates",
     description:
-      "UT for steel plates to ASTM A578 Levels A/B/C and EN 10160 body/edge classes, plus ultrasonic thickness measurement.",
+      "UT for steel plates to ASTM A578 Levels A/B/C and EN 10160 body/edge classes, plus ultrasonic thickness measurement — Jagdamba Procut, Vadodara.",
     keywords: [
       "ultrasonic testing steel plates",
       "astm a578",
       "en 10160",
     ],
+    intro: [
+      "Ultrasonic testing is available depending on grade, thickness, customer specification and the applicable standard — ASTM A578 / A578M Levels A, B and C, and EN 10160 body classes S0–S3 and edge classes E0–E4.",
+      "An ultrasonic thickness meter is also used to verify actual plate thickness at inward, stock, customer and dispatch inspection. Mill or third-party UT reports can be coordinated as required.",
+    ],
+    serviceId: "ut-testing",
+    showUt: true,
+    related: ["boiler-quality-plates-vadodara", "sa516-grade-70", "steel-plate-supplier-vadodara"],
   },
   {
     slug: "oxy-fuel-cutting-vadodara",
-    title: "Oxy-Fuel Heavy Plate Cutting Vadodara | Jagdamba Procut",
+    title: "Oxy-Fuel Heavy Plate Cutting in Vadodara",
     h1: "Oxy-Fuel / Heavy Plate Cutting",
     description:
       "Oxy-fuel cutting for heavy-thickness steel plates — forging blanks, large rings, flanges and heavy base plates in Vadodara.",
@@ -1105,28 +1268,47 @@ export const seoPages = [
       "heavy plate cutting",
       "thick plate cutting",
     ],
+    intro: [
+      "Multiple oxy / pug cutting sets handle heavy-thickness plates for forging blanks, large circles, rings, flanges, heavy base plates and machine components.",
+      "Heavy plates are handled with 5 Nos. 20-ton EOT cranes and a Hydra loading facility, and supplied from our Vadodara stock where available.",
+    ],
+    serviceId: "heavy-plate",
+    related: ["cnc-profile-cutting-vadodara", "steel-plate-supplier-vadodara", "cnc-drilling-vadodara"],
   },
   {
     slug: "boiler-quality-plates-vadodara",
-    title: "Boiler Quality Plates Vadodara | SA516 & More",
+    title: "Boiler Quality Plates in Vadodara – SA516 Gr 60/65/70",
     h1: "Boiler Quality Steel Plates",
     description:
-      "Boiler quality and pressure vessel plates including SA516 Grade 60/65/70 with cutting, UT and delivery from Vadodara.",
+      "Boiler quality and pressure vessel plates including SA516 Grade 60/65/70, P355NL and ASTM A537 with cutting, UT and delivery from Vadodara.",
     keywords: [
       "boiler quality plates vadodara",
       "pressure vessel plates",
       "sa516 plates",
     ],
+    intro: [
+      "We supply boiler and pressure vessel steel plates from Vadodara — SA516 Grade 60, 65 and 70, P355NL / P355NL1, ASTM A537 Class 1 and 2, and ASTM A387 Grade 22 Class 2.",
+      "Plates come with Mill Test Certificate and heat / plate number traceability, and can be profile cut, ultrasonically tested and thickness-verified before dispatch.",
+    ],
+    gradeCategoryId: "boiler",
+    showUt: true,
+    related: ["sa516-grade-70", "sa516-grade-60", "ultrasonic-testing-steel-plates", "cnc-profile-cutting-vadodara"],
   },
   {
     slug: "is2062-e350-plates",
-    title: "IS 2062 E350 Steel Plates | Structural Steel Vadodara",
+    title: "IS 2062 E350 Steel Plates – Structural Steel, Vadodara",
     h1: "IS 2062 E350 Plates",
     description:
       "IS 2062 E350 and related structural grades with ready stock, CNC profile cutting and logistics support in Vadodara.",
     keywords: ["is 2062 e350", "structural steel plates", "e350 plates"],
+    intro: [
+      "IS 2062 E350 is part of our structural and carbon steel range, together with E250, E450 and European grades such as S355JR, S355J2 and S460N.",
+      "Plates are available from approx. 2,500 MT ready stock in Vadodara and can be CNC profile cut, drilled and delivered by our transport arrangements.",
+    ],
+    gradeCategoryId: "structural",
+    related: ["steel-plate-supplier-vadodara", "cnc-profile-cutting-vadodara", "cnc-drilling-vadodara"],
   },
-] as const;
+];
 
 export const ourTeam = {
   heading: "Our Team",

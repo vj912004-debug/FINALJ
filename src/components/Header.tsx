@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { Mail, MapPin, Menu, Phone, Search, X } from "lucide-react";
 import { company, navLinks } from "@/data/site";
 import Logo from "@/components/Logo";
 import { SpotlightNavbar } from "@/components/ui/spotlight-navbar";
@@ -40,8 +40,13 @@ export default function Header() {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
@@ -80,6 +85,13 @@ export default function Header() {
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-steel-light">
+            <Link
+              href="/track"
+              className="inline-flex items-center gap-1.5 font-semibold transition-colors hover:text-brand"
+            >
+              <Search className="h-3.5 w-3.5 shrink-0 text-brand" aria-hidden />
+              Track Enquiry
+            </Link>
             <a
               href={`tel:+91${company.contacts[0].phones[0]}`}
               className="inline-flex items-center gap-1.5 transition-colors hover:text-brand"

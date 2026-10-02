@@ -1,23 +1,31 @@
 import type { Metadata } from "next";
 import PageBanner from "@/components/PageBanner";
-import StockEnquiryForm from "@/components/StockEnquiryForm";
 import FinalCTA from "@/components/FinalCTA";
+import MaterialFinder from "@/components/enquiry/MaterialFinder";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Stock Enquiry",
+export const metadata: Metadata = pageMetadata({
+  title: "Steel Plate Stock Enquiry – Check Availability",
   description:
-    "Enquire steel plate availability by grade, thickness, width, length, make and quantity — Jagdamba Procut Vadodara.",
-};
+    "Search steel plate grades by category and send an availability request with thickness, size, quantity and processing — Jagdamba Procut, Vadodara.",
+  path: "/stock-enquiry",
+});
 
 export default function StockEnquiryPage() {
   return (
     <>
       <PageBanner
-        eyebrow="Stock Enquiry"
+        eyebrow="Material Finder"
+        path="/stock-enquiry"
+        crumb="Stock Enquiry"
         title="Check Material Availability"
-        description="Send your requirement to our sales team. Internal stock quantities are not published online."
+        description="Pick a category and grade, add sizes and processing, and our sales team confirms availability."
       />
-      <StockEnquiryForm />
+      <section className="section-atmosphere steel-mesh bg-background py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <MaterialFinder />
+        </div>
+      </section>
       <FinalCTA />
     </>
   );

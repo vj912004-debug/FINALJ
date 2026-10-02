@@ -11,7 +11,7 @@ type Props = {
   imageOnly?: boolean;
 };
 
-const MOBILE_MAX = "(max-width: 767px)";
+const DESKTOP_MIN = "(min-width: 768px)";
 
 export default function VideoBackground({
   className = "",
@@ -22,16 +22,12 @@ export default function VideoBackground({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [src, setSrc] = useState<string>(heroMedia.localSrc);
   const [failedLocal, setFailedLocal] = useState(false);
-  const [allowVideo, setAllowVideo] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(true);
 
   useEffect(() => {
-    if (imageOnly) {
-      setAllowVideo(false);
-      return;
-    }
+    if (imageOnly) return;
 
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mqMobile = window.matchMedia(MOBILE_MAX);
     const saveData =
       "connection" in navigator &&
       Boolean(
@@ -39,25 +35,22 @@ export default function VideoBackground({
           .connection?.saveData,
       );
 
-    const update = () => {
-      // Phones: static plant image only — no video hero
-      setAllowVideo(!(mqReduce.matches || mqMobile.matches || saveData));
-    };
+    const update = () => setAllowVideo(!(mqReduce.matches || saveData));
 
     update();
     mqReduce.addEventListener("change", update);
-    mqMobile.addEventListener("change", update);
-    return () => {
-      mqReduce.removeEventListener("change", update);
-      mqMobile.removeEventListener("change", update);
-    };
+    return () => mqReduce.removeEventListener("change", update);
   }, [imageOnly]);
 
   useEffect(() => {
     const el = videoRef.current;
     const root = rootRef.current;
-    if (!el || !allowVideo || !root) return;
+    if (!el || !root) return;
     el.muted = true;
+    if (!allowVideo) {
+      el.pause();
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -73,7 +66,9 @@ export default function VideoBackground({
     return () => io.disconnect();
   }, [src, allowVideo]);
 
-  function onError() {
+  function onSourceError() {
+    // Phones skip the source via its media query, which also fires "error".
+    if (!window.matchMedia(DESKTOP_MIN).matches) return;
     if (!failedLocal) {
       setFailedLocal(true);
       setSrc(heroMedia.fallbackSrc);
@@ -93,28 +88,39 @@ export default function VideoBackground({
         alt=""
         fill
         priority
-        className="hero-settle object-cover object-[center_28%] sm:object-center"
+        className="hero-settle object-cover"
         sizes="100vw"
       />
-      {allowVideo ? (
+      {imageOnly ? null : (
         <video
           ref={videoRef}
           key={src}
-          className="hero-settle absolute inset-0 hidden h-full w-full object-cover md:block"
+          className={`hero-settle absolute inset-0 hidden h-full w-full object-cover md:block ${
+            allowVideo ? "" : "md:hidden"
+          }`}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster={heroMedia.poster}
-          onError={onError}
         >
           {!failedLocal && heroMedia.localWebm ? (
-            <source src={heroMedia.localWebm} type="video/webm" />
+            <source
+              src={heroMedia.localWebm}
+              type="video/webm"
+              media={DESKTOP_MIN}
+              onError={onSourceError}
+            />
           ) : null}
-          <source src={src} type="video/mp4" />
+          <source
+            src={src}
+            type="video/mp4"
+            media={DESKTOP_MIN}
+            onError={onSourceError}
+          />
         </video>
-      ) : null}
+      )}
       <div className={`absolute inset-0 ${overlayClassName}`} />
       <div className="dot-grid pointer-events-none absolute inset-0 opacity-15" />
     </div>

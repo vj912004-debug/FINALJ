@@ -8,22 +8,25 @@ import {
 export default function EnquiryFallback({
   subject,
   message,
+  reason,
 }: {
   subject: string;
   message: string;
+  reason?: string;
 }) {
   return (
     <div
       className="mt-4 border border-brand/30 bg-brand/5 p-4 text-sm text-steel"
       role="alert"
     >
+      {reason ? <p className="mb-1 font-semibold text-navy">{reason}</p> : null}
       <p>{ENQUIRY_FALLBACK_MESSAGE}</p>
       <div className="mt-3 flex flex-wrap gap-2">
         <a
           href={whatsappEnquiryUrl(message)}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-whatsapp btn-shine border-0"
+          className="btn btn-shine border-0 bg-[#25D366] text-white hover:bg-[#1ebe57]"
         >
           <MessageCircle className="h-4 w-4" aria-hidden />
           Send on WhatsApp

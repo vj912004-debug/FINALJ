@@ -1,5 +1,6 @@
 import { Cog, Crosshair, Factory, Layers, Package, Ruler } from "lucide-react";
 import { stats } from "@/data/site";
+import CountUp from "@/components/ui/count-up";
 
 const icons = {
   layers: Layers,
@@ -23,7 +24,12 @@ export default function StatsBar() {
               </span>
               <div>
                 <p className="font-display text-2xl font-bold tracking-tight">
-                  {stat.value}
+                  <CountUp value={stat.value} numeric={stat.numeric} suffix={stat.suffix} />
+                  {stat.unit ? (
+                    <span className="ml-1.5 text-sm font-semibold uppercase tracking-wide text-brand">
+                      {stat.unit}
+                    </span>
+                  ) : null}
                 </p>
                 <p className="text-sm text-steel-light">{stat.label}</p>
               </div>

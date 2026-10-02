@@ -24,13 +24,12 @@ function MillCard({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logo}
-        alt=""
+        alt={`${name} logo`}
         width={160}
         height={48}
+        loading="lazy"
         className="h-10 w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-11"
-        aria-hidden
       />
-      <span className="sr-only">{name}</span>
     </div>
   );
 }

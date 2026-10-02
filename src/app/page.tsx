@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import CapabilityTicker from "@/components/ui/capability-ticker";
 import StrengthInNumbers from "@/components/StrengthInNumbers";
@@ -10,6 +11,10 @@ import InteractiveCTABand from "@/components/InteractiveCTABand";
 import DrawingCTA from "@/components/DrawingCTA";
 import FinalCTA from "@/components/FinalCTA";
 import MobileHome from "@/components/mobile/MobileHome";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (
