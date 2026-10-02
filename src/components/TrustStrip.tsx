@@ -65,7 +65,7 @@ export default function TrustStrip() {
           </div>
           <Link
             href="/quote"
-            className="btn btn-primary btn-shine w-fit text-[11px] sm:text-xs"
+            className="btn btn-primary btn-shine btn-shine-loop w-fit text-[11px] sm:text-xs"
           >
             Request a Quote
           </Link>

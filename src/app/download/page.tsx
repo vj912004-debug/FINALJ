@@ -15,7 +15,7 @@ export default function DownloadPage() {
       <PageBanner
         eyebrow="Downloads"
         title="Company Documents"
-        description="Profile, brochure and certificates — easy to update when new PDFs are ready."
+        description="Request the company profile, brochure or certificates from our Vadodara sales team."
       />
       <DownloadsGrid />
       <FinalCTA />

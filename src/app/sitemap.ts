@@ -16,6 +16,7 @@ const routes = [
   "/download",
   "/logistics",
   "/resources",
+  "/vendor",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

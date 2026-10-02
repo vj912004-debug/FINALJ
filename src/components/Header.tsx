@@ -117,7 +117,7 @@ export default function Header() {
           </div>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <Link href="/quote" data-cursor="go" className="btn btn-primary btn-shine px-4 py-2 text-xs">
+            <Link href="/quote" data-cursor="go" className="btn btn-primary btn-shine btn-shine-loop px-4 py-2 text-xs">
               Get a Quote
             </Link>
           </div>

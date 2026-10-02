@@ -20,22 +20,32 @@ export const company = {
   location: "Vadodara, Gujarat, India",
   email: "jagdambaprofile@gmail.com",
   whatsappNumber: "9824917250",
-  officePhones: ["8799617250", "9824917250"],
-  inquiryPhone: "9824917250",
-  accountsPhones: ["8799617250"],
+  officePhones: ["8799617251", "8799617252"],
+  inquiryPhone: "8799617254",
+  accountsPhones: ["8799617253", "8799617255"],
   landLine: "9099969507",
   telefax: "+91-265-2649938 / 2649939 / 9099969507",
   contacts: [
     {
       name: "Mukesh Patel",
-      role: "Director",
+      role: "Owner",
       phones: ["9824917250", "8799617250"],
+    },
+    {
+      name: "Dilip Patel",
+      role: "Owner",
+      phones: ["9824025001"],
     },
   ],
   officeHours: "Mon – Sat: 9:00 AM – 6:00 PM",
   focus:
     "Right Material + Accurate Processing + Testing + Traceability + Safe Handling + Reliable Delivery",
 } as const;
+
+export function hasCredential(value: string) {
+  const v = value.trim().toLowerCase();
+  return Boolean(v) && v !== "to be updated";
+}
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -48,6 +58,7 @@ export const navLinks = [
   { href: "/industries", label: "Industries" },
   { href: "/gallery", label: "Gallery" },
   { href: "/download", label: "Download" },
+  { href: "/vendor", label: "Vendor Registration" },
   { href: "/stock-enquiry", label: "Stock Enquiry" },
   { href: "/quote", label: "Request a Quote" },
   { href: "/contact", label: "Contact Us" },
@@ -55,10 +66,10 @@ export const navLinks = [
 
 /** Local file preferred: public/videos/factory-hero.mp4 — fallback plays until you add yours */
 export const heroMedia = {
-  localSrc: "/videos/factory-hero.mp4",
-  localWebm: "/videos/factory-hero.webm",
+  localSrc: "/videos/gallery/plant-video.mp4",
+  localWebm: "",
   poster: "/images/plant/factory-exterior.png",
-  /** CC0 demo industrial footage (browser-loaded). Replace when local MP4 is added. */
+  /** CC0 demo industrial footage if the plant video cannot play. */
   fallbackSrc:
     "https://cdn.coverr.co/videos/coverr-a-welder-works-on-a-metal-structure-5567/1080p.mp4",
   fallbackSrcAlt:
@@ -152,6 +163,7 @@ export const stats = [
     numeric: 26000,
     prefix: "",
     suffix: "",
+    unit: "Sq. Ft.",
     icon: "factory" as const,
   },
   {
@@ -160,15 +172,35 @@ export const stats = [
     numeric: 75000,
     prefix: "",
     suffix: "",
+    unit: "Sq. Ft.",
     icon: "layers" as const,
   },
   {
-    value: "4 × 20 Ton",
-    label: "Overhead Cranes",
-    numeric: 4,
+    value: "2,500",
+    label: "Ready Stock",
+    numeric: 2500,
+    prefix: "",
+    suffix: "",
+    unit: "MT",
+    icon: "stock" as const,
+  },
+  {
+    value: "5 × 20 Ton",
+    label: "EOT Cranes",
+    numeric: 5,
     prefix: "",
     suffix: " × 20 Ton",
+    unit: "",
     icon: "ruler" as const,
+  },
+  {
+    value: "8",
+    label: "CNC Profile Cutting Machines",
+    numeric: 8,
+    prefix: "",
+    suffix: "",
+    unit: "Nos.",
+    icon: "cnc" as const,
   },
   {
     value: "12 kW",
@@ -176,16 +208,20 @@ export const stats = [
     numeric: 12,
     prefix: "",
     suffix: " kW",
+    unit: "",
     icon: "laser" as const,
   },
 ] as const;
 
 export const strengthExtras = [
-  "CNC Profile Cutting",
+  "Approx. 2,500 MT Ready Stock",
+  "Thickness Range 3 mm to 300 mm",
+  "8 CNC Profile Cutting Machines",
+  "Profile Cutting up to 350 mm",
   "CNC Drilling",
   "Ultrasonic Testing",
   "Hydra Loading & Unloading",
-  "Ultrasonic Thickness Measurement",
+  "Drawing / DXF Based Cutting",
   "Transport Facility",
 ] as const;
 
@@ -307,8 +343,8 @@ export const infrastructure = {
     ],
   },
   cranes: {
-    title: "4 × 20-Ton Overhead Cranes",
-    body: "Four heavy-duty overhead cranes, each with 20-ton lifting capacity, for safe handling of heavy, large and thick plates, profile-cut components, and loading & unloading.",
+    title: "5 × 20-Ton EOT Cranes",
+    body: "Five Nos. 20-ton EOT cranes for safe handling of heavy, large and thick plates, profile-cut components, and loading & unloading.",
     handles: [
       "Heavy Steel Plates",
       "Large Size Plates",
@@ -333,27 +369,35 @@ export const infrastructure = {
   items: [
     { label: "Covered Processing Shed", value: "Approx. 26,000 Sq. Ft." },
     { label: "Steel Plate Storage Yard", value: "Approx. 75,000 Sq. Ft." },
-    { label: "Overhead Cranes", value: "4 Nos. × 20 Ton Each" },
+    { label: "Ready Steel Stock", value: "Approx. 2,500 MT" },
+    { label: "Ready Stock Thickness", value: "3 mm to 300 mm" },
+    { label: "EOT Cranes", value: "5 Nos. × 20 Ton Each" },
+    { label: "CNC Profile Cutting", value: "8 Nos. Machines" },
+    { label: "CNC Bed Size", value: "3000 mm × 12000 mm" },
+    { label: "Profile Cutting Capacity", value: "Up to 350 mm thickness" },
     { label: "Laser Cutting", value: "12 kW High-Power System" },
-    { label: "Laser / CNC Bed Size", value: "Up to approx. 3000 × 12000 mm" },
-    { label: "CNC Drilling", value: "Hole diameters up to approx. 60 mm" },
+    { label: "Laser Bed Size", value: "3000 mm × 12000 mm" },
+    { label: "Laser Thickness Range", value: "1 mm to 35 / 40 mm" },
+    { label: "CNC Drilling", value: "Bed 2500 × 6000 mm · up to 60 mm dia" },
     { label: "Hydra Facility", value: "Heavy Plate Loading & Unloading" },
     { label: "UT Testing", value: "ASTM A578 / EN 10160 levels" },
   ],
   values: [
     { title: "Large Stocking Capacity", detail: "75,000 sq. ft. plate yard" },
     { title: "Strong Infrastructure", detail: "26,000 sq. ft. covered shed" },
-    { title: "Heavy Material Handling", detail: "4×20T cranes + Hydra" },
+    { title: "Heavy Material Handling", detail: "5×20T EOT cranes + Hydra" },
     { title: "Advanced Processing", detail: "CNC, 12 kW laser, drilling" },
   ],
   glance: [
     { value: "26,000 Sq. Ft.", label: "Covered Processing Shed" },
     { value: "75,000 Sq. Ft.", label: "Steel Plate Storage Yard" },
-    { value: "4 × 20 Ton", label: "Heavy-Duty Overhead Cranes" },
+    { value: "2,500 MT", label: "Ready Steel Stock" },
+    { value: "3 mm to 300 mm", label: "Ready Stock Thickness Range" },
+    { value: "5 × 20 Ton", label: "EOT Cranes" },
+    { value: "8 CNC Machines", label: "Profile Cutting" },
     { value: "12 kW", label: "High-Power Laser Cutting" },
     { value: "Hydra Facility", label: "Heavy Plate Loading & Unloading" },
-    { value: "CNC Profile Cutting", label: "Heavy Plate Processing" },
-    { value: "CNC Drilling", label: "Precision Drilling up to ~60 mm" },
+    { value: "CNC Drilling", label: "Bed 2500 × 6000 mm · up to 60 mm dia" },
     { value: "Ultrasonic Testing", label: "Multiple UT Levels Available" },
     {
       value: "Ultrasonic Thickness Meter",
@@ -368,9 +412,13 @@ export const facilities = {
   bullets: [
     "26,000 Sq. Ft. covered processing shed",
     "75,000 Sq. Ft. steel plate storage yard",
-    "4 × 20-Ton overhead cranes",
+    "Approx. 2,500 MT ready stock",
+    "Thickness range from 3 mm to 300 mm",
+    "5 × 20-Ton EOT cranes",
+    "8 CNC profile cutting machines — bed 3000 mm × 12000 mm",
+    "Profile cutting capacity up to 350 mm thickness",
     "Hydra loading & unloading facility",
-    "CNC profile cutting, 12 kW laser & CNC drilling",
+    "12 kW laser cutting, CNC drilling and oxy-fuel cutting",
     "UT testing & ultrasonic thickness measurement",
   ],
 } as const;
@@ -391,14 +439,15 @@ export const services: Service[] = [
     id: "cnc-profile",
     title: "CNC Profile Cutting",
     summary:
-      "Multiple CNC profile-cutting machines for precision processing of steel plates — circles, rings, flanges, base plates, machine and structural components, customized profiles, heavy engineering parts and batch production.",
-    capacity: "Bed size up to approx. 3000 × 12000 mm",
+      "Eight CNC profile-cutting machines for precision processing of steel plates — circles, rings, flanges, base plates, machine and structural components, customized profiles, heavy engineering parts and batch production.",
+    capacity: "8 machines · bed 3000 × 12000 mm · up to 350 mm",
     details: [
-      "Circles, rings & flanges",
-      "Base plates & machine components",
-      "Structural & customized profiles",
-      "Heavy engineering parts & batch production",
-      "Drawing / DXF based nesting support",
+      "8 Nos. CNC profile cutting machines",
+      "Machine bed size 3000 mm × 12000 mm",
+      "Cutting capacity up to 350 mm thickness",
+      "Circles, rings, flanges, base plates and custom profiles",
+      "Cutting as per customer drawing / DXF",
+      "Ready-to-use profile-cut parts under one roof",
     ],
     icon: "flame",
     image: plantImages.cnc,
@@ -408,13 +457,14 @@ export const services: Service[] = [
     title: "12 kW Laser Cutting",
     summary:
       "High-power 12 kW laser cutting for high accuracy, fast production, excellent edge finish, reduced wastage and customized profile cutting on large plates.",
-    capacity: "Processing up to approx. 3000 × 12000 mm",
+    capacity: "Bed 3000 × 12000 mm · 1 mm to 35 / 40 mm",
     details: [
-      "High cutting accuracy & fast production",
-      "Excellent edge finish",
-      "Reduced material wastage",
-      "Customized profile cutting",
-      "Large-format bed for long plates",
+      "Precision laser cutting with 12 kW high-power system",
+      "Bed size 3000 mm × 12000 mm",
+      "Laser thickness range 1 mm to 35 / 40 mm, subject to material and grade",
+      "Accurate, clean cutting and neat edge finish",
+      "Customized components as per drawing",
+      "Material + cutting under one roof",
     ],
     icon: "laser",
     image: plantImages.laser,
@@ -424,13 +474,13 @@ export const services: Service[] = [
     title: "CNC Drilling",
     summary:
       "Precision CNC drilling for steel plates and engineering components — multiple hole patterns, accurate positioning and heavy plate drilling.",
-    capacity: "Hole diameters up to approx. 60 mm",
+    capacity: "Bed 2500 × 6000 mm · holes up to 60 mm",
     details: [
-      "CNC plate drilling",
-      "Multiple hole patterns",
+      "CNC drilling bed size 2500 mm × 6000 mm",
+      "Hole diameters up to 60 mm, depending on thickness and tooling",
+      "Multiple hole patterns and layout support",
       "Accurate hole positioning",
       "Heavy plate & engineering components",
-      "Hole diameters up to approx. 60 mm",
     ],
     icon: "drill",
     image: plantImages.drilling,
@@ -489,14 +539,16 @@ export const machinery = [
     title: "CNC Profile Cutting Machines",
     summary:
       "CNC profile cutting for precision steel plate processing — circles, rings, flanges, base plates, structural profiles and heavy engineering components.",
-    bedSize: "Approx. 3000 × 12000 mm",
-    capacity: "Multi-machine CNC profile cutting",
+    bedSize: "3000 mm × 12000 mm",
+    capacity: "8 Nos. CNC machines · up to 350 mm",
     image: plantImages.cnc,
     details: [
-      "Bed size up to approx. 3000 mm × 12000 mm",
+      "8 Nos. CNC profile cutting machines",
+      "Machine bed size 3000 mm × 12000 mm",
+      "Cutting capacity up to 350 mm thickness",
+      "Suitable for heavy and customized profiles",
       "Circles, rings, flanges and base plates",
       "Customized profiles from drawings / DXF",
-      "Batch production for OEM and project work",
     ],
   },
   {
@@ -504,11 +556,12 @@ export const machinery = [
     title: "12 kW Laser Cutting Machine",
     summary:
       "High-power 12 kW laser for accurate, fast cutting with excellent edge quality on large-format plates.",
-    bedSize: "Approx. 3000 × 12000 mm",
-    capacity: "12 kW high-power laser",
+    bedSize: "3000 mm × 12000 mm",
+    capacity: "12 kW high-power laser · 1 to 35 / 40 mm",
     image: plantImages.laser,
     details: [
-      "Bed size up to approx. 3000 mm × 12000 mm",
+      "Bed size 3000 mm × 12000 mm",
+      "Laser thickness range 1 mm to 35 / 40 mm (subject to material and grade)",
       "High accuracy and speed",
       "Excellent edge finish",
       "Reduced wastage on nested jobs",
@@ -519,14 +572,14 @@ export const machinery = [
     title: "CNC Drilling Machine",
     summary:
       "CNC drilling for precise hole patterns on steel plates and engineered components.",
-    bedSize: "Aligned with plate processing lines",
-    capacity: "Holes up to approx. 60 mm diameter",
+    bedSize: "2500 mm × 6000 mm",
+    capacity: "Holes up to 60 mm diameter",
     image: plantImages.drilling,
     details: [
-      "Hole diameters up to approx. 60 mm",
-      "Accurate multi-hole patterns",
+      "CNC drilling bed size 2500 mm × 6000 mm",
+      "Hole diameters up to 60 mm, depending on thickness and tooling",
+      "Accurate multi-hole patterns and layout support",
       "Heavy plate drilling capability",
-      "Engineering component drilling",
     ],
   },
   {
@@ -538,10 +591,11 @@ export const machinery = [
     capacity: "Heavy-thickness oxy-fuel cutting",
     image: plantImages.oxy,
     details: [
+      "Multiple oxy / pug cutting sets available",
+      "Straight cutting and production support",
       "Thick plate cutting",
       "Large circles, rings and flanges",
       "Forging blanks and heavy base plates",
-      "Machine and structural components",
     ],
   },
 ] as const;
@@ -619,11 +673,17 @@ export const gradeCategories = [
     name: "Structural & Carbon Steel",
     grades: [
       "IS 2062 E250",
+      "IS 2062 E250A",
+      "IS 2062 E250BR",
+      "IS 2062 E250C",
       "IS 2062 E350",
+      "IS 2062 E350A",
       "E350BR",
       "E350C",
+      "IS 2062 E450",
       "E450BR",
       "S355JR",
+      "S355J0",
       "S355J2",
       "S355J2+N",
       "S355NL",
@@ -736,11 +796,14 @@ export const supportedGrades = gradeCategories.flatMap((c) => c.grades);
 export const materialGradesList = supportedGrades;
 
 export const readyStockAdvantage = [
+  "Approx. 2,500 MT ready stock",
+  "Thickness range from 3 mm to 300 mm",
+  "Special grades available",
+  "Material with Mill Test Certificate / TC",
+  "Fast availability for regular and urgent requirements",
   "Leading Indian mills: Jindal, SAIL, JSW, Tata Steel, AM/NS India",
   "Imported / China-origin plates subject to availability",
-  "Mill Test Certificates & traceability documents",
   "UT & ultrasonic thickness verification available",
-  "Special and equivalent grades subject to availability",
 ] as const;
 
 export const transport = {
@@ -749,33 +812,38 @@ export const transport = {
   badge: "On Time. Every Time.",
   body: "We have transportation arrangements suitable for different material sizes and quantities.",
   dispatchStrength: [
-    "Heavy-Duty Trailers",
-    "Plate Transport Trailers",
-    "Tempo",
-    "Pickup Vehicles",
-    "Local Delivery Vehicles",
+    "Loading support with 5 Nos. 20 Ton EOT cranes",
+    "Ready stock for immediate dispatch",
+    "Vehicle arrangement support",
+    "Local and outstation transport coordination",
+    "Safe plate loading and handling",
+    "Support for regular and urgent dispatches",
+    "Heavy-duty trailers, plate transport trailers, tempo and pickup vehicles",
   ],
   features: [
-    { title: "Material Supply", detail: "Stock to order" },
-    { title: "Processing", detail: "CNC · Laser · Drilling" },
-    { title: "Testing & Inspection", detail: "UT & QC" },
-    { title: "Loading", detail: "Crane & Hydra" },
-    { title: "Delivery", detail: "Transport support" },
+    { title: "Ready Vehicles", detail: "For timely dispatch" },
+    { title: "5 Nos. 20 Ton", detail: "EOT cranes for loading support" },
+    { title: "Safe Loading & Handling", detail: "At every step" },
+    { title: "Local & Outstation", detail: "Transport coordination" },
+    { title: "Regular & Urgent", detail: "Dispatch support" },
   ],
   logisticsChain:
     "Material Supply → Processing → Testing → Inspection → Loading → Transportation → Delivery",
 } as const;
 
 export const whyCustomersChooseUs = [
-  "Large Stocking Capacity — dedicated 75,000 sq. ft. steel plate storage yard",
-  "Strong Infrastructure — 26,000 sq. ft. covered processing facility",
-  "Heavy Material Handling — four 20-ton overhead cranes plus Hydra facility",
-  "Leading Steel Makes — Jindal, SAIL, JSW, Tata Steel and AM/NS India",
-  "Imported Material — China-origin and other imported material subject to availability",
-  "Advanced Processing — CNC profile cutting, 12 kW laser cutting and CNC drilling",
-  "Quality Verification — UT facilities and Ultrasonic Thickness Meter",
-  "Complete Logistics — trailers, tempos, pickups and delivery support",
-  "End-to-end solution — from steel plate supply to customer delivery under one roof",
+  "Serving the engineering industry since 2001",
+  "Approx. 2,500 MT ready stock",
+  "Steel trading + profile cutting + laser cutting under one roof",
+  "Thickness range from 3 mm to 300 mm",
+  "8 CNC profile cutting machines",
+  "Strong handling capacity with 5 Nos. 20 Ton EOT cranes",
+  "26,000 sq. ft. covered processing shed and 75,000 sq. ft. plate yard",
+  "Customized cutting as per drawing / DXF",
+  "Competitive pricing and fast delivery support",
+  "Leading steel makes — Jindal, SAIL, JSW, Tata Steel and AM/NS India",
+  "Quality verification — UT facilities and ultrasonic thickness meter",
+  "Complete logistics — trailers, tempos, pickups and delivery support",
 ] as const;
 
 export const whyUs = whyCustomersChooseUs;
@@ -916,12 +984,12 @@ export const downloads = [
   {
     id: "company-profile",
     title: "Company Profile",
-    file: "/downloads/company-profile.pdf" as string | null,
+    file: null as string | null,
   },
   {
     id: "product-brochure",
     title: "Product Brochure",
-    file: "/downloads/product-brochure.pdf" as string | null,
+    file: null as string | null,
   },
   {
     id: "iso-certificate",
@@ -963,7 +1031,7 @@ export const seoPages = [
     title: "Steel Plate Supplier in Vadodara | Jagdamba Procut",
     h1: "Steel Plate Supplier Vadodara",
     description:
-      "Steel plate stockist and supplier in Vadodara with 75,000 sq. ft. storage yard, leading Indian mills and imported material subject to availability.",
+      "Steel plate stockist and supplier in Vadodara with approx. 2,500 MT ready stock, 75,000 sq. ft. storage yard, leading Indian mills and imported material subject to availability.",
     keywords: [
       "steel plate supplier vadodara",
       "steel stockist gujarat",
@@ -1007,7 +1075,7 @@ export const seoPages = [
     title: "CNC Drilling for Steel Plates | Vadodara | Jagdamba Procut",
     h1: "CNC Drilling Vadodara",
     description:
-      "CNC drilling for steel plates and engineering components in Vadodara — hole diameters up to approx. 60 mm with accurate positioning.",
+      "CNC drilling for steel plates and engineering components in Vadodara — bed size 2500 × 6000 mm, hole diameters up to 60 mm with accurate positioning.",
     keywords: [
       "cnc drilling vadodara",
       "plate drilling",
@@ -1089,7 +1157,7 @@ export const aboutHighlights = [
   {
     title: "Heavy Handling",
     description:
-      "4 × 20-ton overhead cranes plus Hydra loading and unloading across the stockyard.",
+      "5 × 20-ton EOT cranes plus Hydra loading and unloading across the stockyard.",
   },
 ] as const;
 
@@ -1103,10 +1171,12 @@ export const qualityTesting = {
 export const deliverySupport = {
   heading: "Delivery Support",
   points: [
-    "Heavy-Duty Trailers & Plate Transport Trailers",
-    "Tempo, Pickup & Local Delivery Vehicles",
-    "Loading with cranes & Hydra facility",
-    "Supply → Processing → Testing → Delivery chain",
+    "Fast processing and delivery",
+    "Ready stock for immediate dispatch",
+    "Support for regular and urgent requirements",
+    "Reliable supply for production and project needs",
+    "Loading with 5 Nos. 20 Ton EOT cranes & Hydra facility",
+    "Local and outstation transport coordination",
   ],
 } as const;
 
@@ -1114,5 +1184,250 @@ export const serviceHighlights = [
   "CNC Profile Cutting · 12 kW Laser · CNC Drilling · Heavy Plate Cutting",
   "Ultrasonic Testing — ASTM A578 Levels A/B/C · EN 10160 S0–S3 / E0–E4",
   "Ultrasonic Thickness Meter for inward, stock, customer & dispatch inspection",
-  "4 × 20-Ton Overhead Cranes · Hydra Facility · 26,000 + 75,000 Sq. Ft. facility",
+  "5 × 20-Ton EOT Cranes · 8 CNC Machines · 26,000 + 75,000 Sq. Ft. facility",
+] as const;
+
+export const machineCapacityChart = [
+  {
+    process: "CNC Profile Cutting",
+    capacity: "8 Nos. Machines",
+    remarks: "Oxy-fuel profile cutting for heavy plates",
+  },
+  {
+    process: "CNC Bed Size",
+    capacity: "3000 mm × 12000 mm",
+    remarks: "Suitable for large plate processing",
+  },
+  {
+    process: "Profile Cutting Capacity",
+    capacity: "Up to 350 mm thickness",
+    remarks: "As per material grade and profile",
+  },
+  {
+    process: "Laser Cutting",
+    capacity: "12 kW high-power laser system",
+    remarks: "Precision cutting for clean components",
+  },
+  {
+    process: "Laser Bed Size",
+    capacity: "3000 mm × 12000 mm",
+    remarks: "Large sheet / plate handling",
+  },
+  {
+    process: "Laser Thickness Range",
+    capacity: "1 mm to 35 / 40 mm",
+    remarks: "Subject to material and grade",
+  },
+  {
+    process: "CNC Drilling",
+    capacity: "Bed size 2500 mm × 6000 mm",
+    remarks: "Hole drilling and layout support",
+  },
+  {
+    process: "Drill Capacity",
+    capacity: "Up to 60 mm dia",
+    remarks: "Depending on thickness and tooling",
+  },
+  {
+    process: "Oxy / Pug Cutting",
+    capacity: "Multiple sets available",
+    remarks: "Straight cutting and production support",
+  },
+  {
+    process: "EOT Cranes",
+    capacity: "5 Nos., 20 Ton capacity",
+    remarks: "Safe plate lifting and handling",
+  },
+  {
+    process: "Material Handling",
+    capacity: "Magnet / forklift / crane support",
+    remarks: "Internal movement and loading",
+  },
+  {
+    process: "Input Support",
+    capacity: "Drawing / DXF / NC based cutting",
+    remarks: "Customer drawing-based job work",
+  },
+] as const;
+
+export const machineCapacityNote =
+  "Machine capacity and achievable thickness vary with process, material grade, drawing complexity, and production planning. Final confirmation will be provided at quotation stage.";
+
+export const machineValueAdded = [
+  "Drawing-based profile cutting",
+  "Nesting and customized job work",
+  "Marking / identification support",
+  "CNC drilling support on requirement",
+  "Heavy plate handling under one roof",
+  "Quick turnaround for regular and urgent jobs",
+] as const;
+
+export const stockRange = [
+  { parameter: "Plate Thickness", details: "3 mm to 300 mm" },
+  {
+    parameter: "Standard Widths",
+    details: "1250 / 1500 / 2000 / 2500 / 3000 mm",
+  },
+  {
+    parameter: "Standard Lengths",
+    details: "6000 / 8000 / 10000 / 12000 mm",
+  },
+  {
+    parameter: "Supply Form",
+    details: "Full plates, cut plates, profile-cut parts",
+  },
+  {
+    parameter: "Delivery Condition",
+    details: "As rolled / Normalized / N / Special grades subject to availability",
+  },
+  {
+    parameter: "Documentation",
+    details: "Mill Test Certificate / TC available",
+  },
+] as const;
+
+export const commonGradeGroups = [
+  {
+    group: "IS 2062 Series",
+    grades: "E250A, E250BR, E250C, E350A / BR / C, E450A / BR",
+  },
+  {
+    group: "EN Structural",
+    grades: "S355JR, S355J0, S355J2, S355J2+N",
+  },
+  {
+    group: "Pressure Vessel Plates",
+    grades: "SA516 Gr 60, SA516 Gr 65, SA516 Gr 70",
+  },
+  {
+    group: "Carbon / Alloy",
+    grades: "C45, EN19, ST52-3",
+  },
+  {
+    group: "Wear Resistant / High Strength",
+    grades: "Hardox 400 / 500, NM 400 / 500, 690QL",
+  },
+  {
+    group: "Other Availability",
+    grades: "Additional grades as per customer requirement",
+  },
+] as const;
+
+export const stockReferenceNote =
+  "Stock position varies by grade, thickness, make, and order cycle. Exact availability, make, and delivery condition will be confirmed at the time of inquiry / quotation.";
+
+export const is2062Chemistry = {
+  heading: "IS 2062 Chemical Composition",
+  caption:
+    "Ladle / heat analysis reference values. All values are % by mass unless otherwise stated.",
+  columns: ["IS 2062 Grade", "C Max", "Mn Max", "Si Max", "P Max", "S Max", "CE Max"],
+  rows: [
+    ["E250A", "0.23", "1.50", "0.40", "0.045", "0.045", "0.42"],
+    ["E250BR", "0.22", "1.50", "0.40", "0.045", "0.045", "0.41"],
+    ["E250C", "0.20", "1.50", "0.40", "0.040", "0.040", "0.39"],
+    ["E350 A / BR", "0.20", "1.55", "0.45", "0.045", "0.045", "0.47"],
+    ["E350C", "0.20", "1.55", "0.45", "0.040", "0.040", "0.45"],
+    ["E450 A / BR", "0.22", "1.65", "0.45", "0.045", "0.045", "0.52"],
+  ],
+} as const;
+
+export const otherGradeChemistry = {
+  heading: "Other Common Grades",
+  caption: "EN structural, carbon steel and pressure-vessel plate grades commonly supplied.",
+  columns: ["Grade / Standard", "C", "Mn", "Si", "P", "S", "Condition / Note"],
+  rows: [
+    ["S355JR - EN 10025-2", "<=0.24*", "<=1.60", "<=0.55", "<=0.035", "<=0.035", "Structural steel"],
+    ["S355J0 - EN 10025-2", "<=0.24*", "<=1.60", "<=0.55", "<=0.035", "<=0.035", "Impact at 0 C"],
+    ["S355J2 / +N", "<=0.24*", "<=1.60", "<=0.55", "<=0.035", "<=0.035", "Impact at -20 C"],
+    ["C45 - EN 10083-2", "0.42-0.50", "0.50-0.80", "<=0.40", "<=0.045", "<=0.045", "Non-alloy carbon steel"],
+    ["SA516 Gr 60", "0.23**", "0.85-1.20", "0.15-0.40", "<=0.025", "<=0.025", "t >12.5 to 50 mm"],
+    ["SA516 Gr 65", "0.26**", "0.85-1.20", "0.15-0.40", "<=0.025", "<=0.025", "t >12.5 to 50 mm"],
+    ["SA516 Gr 70", "0.28**", "0.85-1.20", "0.15-0.40", "<=0.025", "<=0.025", "t >12.5 to 50 mm"],
+  ],
+} as const;
+
+export const chemistryNotes = [
+  "S355 composition limits vary with product thickness and exact subgrade; common plate reference values are shown.",
+  "SA516 carbon maximum varies by thickness; values shown are for over 12.5 mm to 50 mm plate thickness.",
+  "Exact MTC / TC, ordered subgrade, thickness, delivery condition and the latest applicable standard shall govern.",
+] as const;
+
+export const mechanicalProperties = {
+  heading: "Mechanical Properties",
+  caption:
+    "Minimum / standard reference values at room temperature unless otherwise stated.",
+  columns: [
+    "Grade",
+    "Yield Strength / Proof",
+    "Tensile Strength",
+    "Elongation",
+    "Impact / Condition",
+  ],
+  rows: [
+    [
+      "IS 2062 E250A",
+      "250 / 240 / 230 MPa (t <20 / 20-40 / >40 mm)",
+      ">=410 MPa",
+      ">=23%",
+      "Not specified",
+    ],
+    ["IS 2062 E250BR", "250 / 240 / 230 MPa", ">=410 MPa", ">=23%", "27 J @ RT, if specified"],
+    ["IS 2062 E250C", "250 / 240 / 230 MPa", ">=410 MPa", ">=23%", "27 J @ -20 C"],
+    ["IS 2062 E350A", "350 / 330 / 320 MPa", ">=490 MPa", ">=22%", "Not specified"],
+    ["IS 2062 E350BR", "350 / 330 / 320 MPa", ">=490 MPa", ">=22%", "27 J @ RT, if specified"],
+    ["IS 2062 E350C", "350 / 330 / 320 MPa", ">=490 MPa", ">=22%", "27 J @ -20 C"],
+    ["IS 2062 E450A", "450 / 430 / 420 MPa", ">=570 MPa", ">=20%", "Not specified"],
+    ["IS 2062 E450BR", "450 / 430 / 420 MPa", ">=570 MPa", ">=20%", "20 J @ RT, if specified"],
+    ["S355JR - EN 10025-2", ">=355 MPa*", "470-630 MPa*", ">=20%*", "27 J @ +20 C"],
+    ["S355J0 - EN 10025-2", ">=355 MPa*", "470-630 MPa*", ">=20%*", "27 J @ 0 C"],
+    ["S355J2 / +N", ">=355 MPa*", "470-630 MPa*", ">=20%*", "27 J @ -20 C"],
+    ["C45 - EN 10083-2", ">=490 MPa**", "700-850 MPa**", ">=14%**", "Q&T; ref. t <=16 mm"],
+    ["SA516 Gr 60", ">=220 MPa", "415-550 MPa", ">=25%***", "Impact by PO / supplement"],
+    ["SA516 Gr 65", ">=240 MPa", "450-585 MPa", ">=23%***", "Impact by PO / supplement"],
+    ["SA516 Gr 70", ">=260 MPa", "485-620 MPa", ">=21%***", "Impact by PO / supplement"],
+  ],
+} as const;
+
+export const mechanicalNotes = [
+  "S355 values shown for common plate thickness range; yield / tensile / elongation vary with thickness.",
+  "C45 values shown as quenched-and-tempered reference for small section / thickness; condition strongly affects properties.",
+  "SA516 elongation shown for 50 mm gauge length. Impact testing is supplementary unless specifically ordered.",
+  "Technical references: IS 2062:2011, EN 10025-2, EN 10083-2 and ASME SA-516/SA-516M. Verify latest edition & MTC/TC.",
+] as const;
+
+export const inspectionSupport = [
+  "Mill Test Certificate / TC support",
+  "Heat No. and Plate No. traceability",
+  "Thickness measurement and verification",
+  "UT testing support as per requirement",
+  "Material marking before cutting / dispatch",
+  "Dimensional checking of cut parts",
+  "Visual inspection before dispatch",
+  "Chemical / mechanical test reference support",
+  "NABL lab testing support on requirement",
+  "TPI coordination with customer-nominated agencies",
+] as const;
+
+export const traceabilityWorkflow = [
+  { stage: "Material Receipt", support: "Grade, size, heat no., plate no. verification" },
+  { stage: "Pre-Processing", support: "Marking, traceability and job identification" },
+  { stage: "In-Process", support: "Dimensional checking and process monitoring" },
+  { stage: "Final Dispatch", support: "Visual check, loading coordination and documentation support" },
+  { stage: "Customer Support", support: "MTC / TC, UT / test reference, dispatch details" },
+] as const;
+
+export const tpiSupport = [
+  "Inspection coordination available with SGS / TUV / BV / customer nominated agency",
+  "UT level, documentation and special testing as per PO / inquiry",
+  "Exact material standard, test scope and supply condition will govern as per MTC / TC",
+] as const;
+
+export const inspectionNote =
+  "Inspection scope may vary grade-wise and order-wise. Final testing, traceability, and documentation will be provided subject to customer requirement, PO terms, and material condition.";
+
+export const departmentContacts = [
+  { label: "Office", phones: ["8799617251", "8799617252"] },
+  { label: "Inquiry", phones: ["8799617254"] },
+  { label: "Accounts", phones: ["8799617253", "8799617255"] },
+  { label: "Land Line", phones: ["9099969507"] },
 ] as const;

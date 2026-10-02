@@ -109,7 +109,7 @@ export default function VideoBackground({
           poster={heroMedia.poster}
           onError={onError}
         >
-          {!failedLocal ? (
+          {!failedLocal && heroMedia.localWebm ? (
             <source src={heroMedia.localWebm} type="video/webm" />
           ) : null}
           <source src={src} type="video/mp4" />

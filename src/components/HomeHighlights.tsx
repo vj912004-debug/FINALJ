@@ -22,7 +22,7 @@ const highlights = [
   {
     href: "/facilities",
     title: "Infrastructure",
-    description: "26,000 sq. ft. shed, 75,000 sq. ft. yard, 4×20T cranes.",
+    description: "26,000 sq. ft. shed, 75,000 sq. ft. yard, 2,500 MT stock, 5×20T cranes.",
     icon: Factory,
   },
   {

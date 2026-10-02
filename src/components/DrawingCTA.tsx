@@ -18,7 +18,7 @@ export default function DrawingCTA() {
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
-          <Link href="/quote#upload" className="btn btn-primary">
+          <Link href="/quote#upload" className="btn btn-primary btn-shine-loop">
             Upload Drawing
           </Link>
           <Link href="/quote" className="btn btn-outline">

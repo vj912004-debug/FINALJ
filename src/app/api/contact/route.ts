@@ -90,8 +90,8 @@ export async function POST(request: Request) {
     console.error("[POST /api/contact]", error);
     const message =
       error instanceof Error && error.message.includes("Can't reach database")
-        ? "Database unavailable. Please configure DATABASE_URL and run migrations."
-        : "Unable to save inquiry. Please try again later.";
+        ? "Unable to save the enquiry right now. Please send your requirement on WhatsApp or email."
+        : "Unable to save the enquiry right now. Please send your requirement on WhatsApp or email.";
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }

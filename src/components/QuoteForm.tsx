@@ -6,6 +6,8 @@ import { indianMills, supportedGrades } from "@/data/site";
 import { FadeIn, RiseIn } from "@/components/motion/Motion";
 import TextReveal from "@/components/ui/text-reveal";
 import AnimatedButton from "@/components/ui/animated-button";
+import { publicEnquiryError } from "@/lib/enquiry-links";
+import EnquiryFallback from "@/components/EnquiryFallback";
 
 const inputClass =
   "w-full border border-line bg-background px-3.5 py-3 text-base text-navy outline-none transition-all focus:border-brand focus:shadow-[0_0_0_3px_rgba(241,90,36,0.14)] sm:py-2.5 sm:text-sm";
@@ -79,6 +81,29 @@ export default function QuoteForm({ compactHeading = false }: QuoteFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  function enquiryMessage() {
+    return [
+      "Hello Jagdamba Procut, I want to send a steel requirement.",
+      `Name: ${form.customerName}`,
+      `Company: ${form.companyName}`,
+      `Phone: ${form.phone}`,
+      `Email: ${form.email}`,
+      `Grade: ${form.grade}`,
+      `Make: ${form.make || "—"}`,
+      `Thickness: ${form.thickness}`,
+      `Width: ${form.width || "—"}`,
+      `Length: ${form.length || "—"}`,
+      `Quantity: ${form.quantity}`,
+      `Approx Weight: ${form.approxWeight || "—"}`,
+      `UT Level: ${form.utLevel || "—"}`,
+      `Cutting: ${form.cuttingRequired}`,
+      `Laser: ${form.laserRequired}`,
+      `Drilling: ${form.drillingRequired}`,
+      `Delivery: ${form.deliveryLocation || "—"}`,
+      `Remarks: ${form.remarks || "—"}`,
+    ].join("\n");
+  }
+
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
@@ -128,9 +153,11 @@ export default function QuoteForm({ compactHeading = false }: QuoteFormProps) {
       setSubmitted(true);
     } catch (err) {
       setError(
-        err instanceof Error
-          ? err.message
-          : "Unable to submit enquiry. Please try again.",
+        publicEnquiryError(
+          err instanceof Error
+            ? err.message
+            : "Unable to submit enquiry. Please try again.",
+        ),
       );
     } finally {
       setSubmitting(false);
@@ -416,9 +443,10 @@ export default function QuoteForm({ compactHeading = false }: QuoteFormProps) {
               </div>
 
               {error ? (
-                <p className="mt-4 text-sm text-brand" role="alert">
-                  {error}
-                </p>
+                <EnquiryFallback
+                  subject="Steel enquiry — Jagdamba Procut"
+                  message={enquiryMessage()}
+                />
               ) : null}
 
               <AnimatedButton

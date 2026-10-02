@@ -8,7 +8,7 @@ import FinalCTA from "@/components/FinalCTA";
 export const metadata: Metadata = {
   title: "Infrastructure & Capacity",
   description:
-    "26,000 sq. ft. covered shed, 75,000 sq. ft. open plate yard, 4×20-ton overhead cranes, Hydra facility, 12 kW laser — Jagdamba Procut Vadodara.",
+    "26,000 sq. ft. covered shed, 75,000 sq. ft. open plate yard, approx. 2,500 MT ready stock, 5×20-ton EOT cranes, 8 CNC machines, 12 kW laser — Jagdamba Procut Vadodara.",
 };
 
 export default function FacilitiesPage() {

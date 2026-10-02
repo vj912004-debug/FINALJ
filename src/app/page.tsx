@@ -5,6 +5,7 @@ import TrustStrip from "@/components/TrustStrip";
 import Resources from "@/components/Resources";
 import HomeOverview from "@/components/HomeOverview";
 import MediaShowcase from "@/components/MediaShowcase";
+import HomeVideoStrip from "@/components/HomeVideoStrip";
 import InteractiveCTABand from "@/components/InteractiveCTABand";
 import DrawingCTA from "@/components/DrawingCTA";
 import FinalCTA from "@/components/FinalCTA";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <TrustStrip />
         <Resources compact />
         <HomeOverview />
+        <HomeVideoStrip />
         <MediaShowcase />
         <DrawingCTA />
         <InteractiveCTABand />

@@ -149,7 +149,7 @@ export function MagneticCard({
   return (
     <motion.div
       className={`relative ${className ?? ""}`}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -8 }}
       transition={{ duration: 0.28, ease }}
     >
       {children}

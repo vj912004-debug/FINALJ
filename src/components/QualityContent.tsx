@@ -3,10 +3,14 @@
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import {
+  inspectionNote,
+  inspectionSupport,
   plantImages,
   qualityTraceability,
   thicknessMeter,
+  tpiSupport,
   traceabilityDocuments,
+  traceabilityWorkflow,
   utTesting,
 } from "@/data/site";
 import { FadeIn, RiseIn, StaggerChildren, StaggerItem } from "@/components/motion/Motion";
@@ -147,6 +151,85 @@ export default function QualityContent() {
             </div>
           </StaggerItem>
         </StaggerChildren>
+
+        <FadeIn className="surface-lift border border-line bg-background p-6 sm:p-8">
+          <h2 className="font-display text-xl font-bold uppercase text-navy">
+            Inspection &amp; Documentation Support
+          </h2>
+          <div className="mt-2 h-1 w-12 bg-brand" aria-hidden />
+          <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+            {inspectionSupport.map((item) => (
+              <li key={item} className="flex gap-2 text-sm text-steel">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
+
+        <FadeIn className="overflow-hidden border border-line">
+          <div className="bg-navy px-4 py-3 sm:px-5">
+            <h2 className="font-display text-sm font-bold uppercase tracking-[0.14em] text-white">
+              Traceability Workflow
+            </h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[480px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="bg-surface-muted">
+                  <th className="border-b border-line px-4 py-3 font-semibold text-navy">
+                    Stage
+                  </th>
+                  <th className="border-b border-line px-4 py-3 font-semibold text-navy">
+                    Support
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {traceabilityWorkflow.map((row, index) => (
+                  <tr
+                    key={row.stage}
+                    className={index % 2 === 0 ? "bg-surface" : "bg-background"}
+                  >
+                    <td className="border-b border-line px-4 py-2.5 font-semibold text-navy">
+                      {row.stage}
+                    </td>
+                    <td className="border-b border-line px-4 py-2.5 text-steel">
+                      {row.support}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </FadeIn>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <FadeIn className="border border-line bg-navy p-6 text-white sm:p-8">
+            <h2 className="font-display text-xl font-bold uppercase text-brand">
+              TPI / Third Party Support
+            </h2>
+            <ul className="mt-5 space-y-2">
+              {tpiSupport.map((item) => (
+                <li key={item} className="flex gap-2 text-sm text-steel-light">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+          <FadeIn
+            delay={0.06}
+            className="surface-lift border border-line bg-background p-6 sm:p-8"
+          >
+            <h2 className="font-display text-xl font-bold uppercase text-navy">
+              Important Note
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-steel">
+              {inspectionNote}
+            </p>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );

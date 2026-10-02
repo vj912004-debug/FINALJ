@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Download as DownloadIcon, FileText } from "lucide-react";
 import { downloads } from "@/data/site";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/Motion";
@@ -36,7 +37,10 @@ export default function DownloadsGrid() {
                   </a>
                 ) : (
                   <p className="mt-auto pt-6 text-sm text-steel">
-                    To be uploaded — contact sales for a copy.
+                    <Link href="/contact" className="link-underline font-semibold text-navy">
+                      Contact sales
+                    </Link>{" "}
+                    for a copy.
                   </p>
                 )}
               </article>

@@ -1,4 +1,4 @@
-import { Crosshair, Factory, Layers, Ruler } from "lucide-react";
+import { Cog, Crosshair, Factory, Layers, Package, Ruler } from "lucide-react";
 import { stats } from "@/data/site";
 
 const icons = {
@@ -6,12 +6,14 @@ const icons = {
   factory: Factory,
   ruler: Ruler,
   laser: Crosshair,
+  stock: Package,
+  cnc: Cog,
 } as const;
 
 export default function StatsBar() {
   return (
     <section className="bg-navy text-white">
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8">
         {stats.map((stat) => {
           const Icon = icons[stat.icon];
           return (

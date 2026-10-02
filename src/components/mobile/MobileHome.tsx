@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FileUp, MessageCircle } from "lucide-react";
+import { FileUp, MessageCircle, Play } from "lucide-react";
 import {
   company,
+  galleryVideos,
   homeCtas,
   plantImages,
   processFlow,
@@ -19,7 +20,6 @@ const shortcuts = [
   { href: "/contact", label: "Contact", image: plantImages.factory },
 ] as const;
 
-const units = ["Sq. Ft.", "Sq. Ft.", "", ""] as const;
 
 export default function MobileHome() {
   return (
@@ -52,14 +52,14 @@ export default function MobileHome() {
         </div>
 
         <div className="grid grid-cols-2 gap-2 bg-navy px-4 pb-4">
-          <Link href="/quote" className="btn btn-primary min-h-12 text-sm">
+          <Link href="/quote" className="btn btn-primary btn-shine-loop min-h-12 text-sm">
             Get a Quote
           </Link>
           <a
             href={homeCtas[2].href}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-whatsapp min-h-12 text-sm"
+            className="btn btn-whatsapp btn-shine-loop min-h-12 text-sm"
           >
             <MessageCircle className="h-4 w-4" aria-hidden />
             WhatsApp
@@ -80,7 +80,7 @@ export default function MobileHome() {
             <Link
               key={item.href}
               href={item.href}
-              className="overflow-hidden border border-line bg-white"
+              className="overflow-hidden border border-line bg-white active:scale-[0.98]"
             >
               <span className="relative block aspect-[16/10]">
                 <Image
@@ -99,6 +99,43 @@ export default function MobileHome() {
         </div>
       </section>
 
+      <section className="px-4 py-6">
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
+              Watch
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-semibold text-navy">
+              Plant videos
+            </h2>
+          </div>
+          <Link href="/gallery" className="text-[11px] font-semibold uppercase tracking-wider text-brand">
+            All →
+          </Link>
+        </div>
+        <div className="-mx-4 mt-4 flex gap-3 overflow-x-auto px-4 pb-2">
+          {galleryVideos.slice(0, 4).map((clip) => (
+            <Link
+              key={clip.id}
+              href="/gallery"
+              className="relative w-[78%] shrink-0 overflow-hidden border border-line"
+            >
+              <span className="relative block aspect-[16/10]">
+                <Image src={clip.poster} alt="" fill className="object-cover" sizes="80vw" />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white">
+                    <Play className="h-4 w-4 fill-current" aria-hidden />
+                  </span>
+                </span>
+              </span>
+              <span className="block bg-white px-3 py-2 font-display text-sm font-semibold uppercase text-navy">
+                {clip.title}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="border-y border-line bg-white px-4 py-6">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
           Capability
@@ -107,15 +144,14 @@ export default function MobileHome() {
           Strength in Numbers
         </h2>
         <div className="mt-4 grid grid-cols-2 gap-px bg-line">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <article key={stat.label} className="bg-white px-3 py-4">
               <p className="font-display text-2xl font-semibold tabular-nums text-navy">
                 {stat.value}
-                {stat.suffix}
               </p>
-              {units[index] ? (
+              {stat.unit ? (
                 <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand">
-                  {units[index]}
+                  {stat.unit}
                 </p>
               ) : null}
               <p className="mt-1 text-[11px] font-semibold uppercase leading-snug text-steel">
@@ -156,7 +192,7 @@ export default function MobileHome() {
           replies with stock and processing options.
         </p>
         <div className="mt-5 flex flex-col gap-2.5">
-          <Link href="/quote#upload" className="btn btn-primary min-h-12">
+          <Link href="/quote#upload" className="btn btn-primary btn-shine-loop min-h-12">
             Upload Drawing
           </Link>
           <Link href="/quote" className="btn btn-outline min-h-12">

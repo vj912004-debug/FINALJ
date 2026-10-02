@@ -5,8 +5,6 @@ import { useReducedMotion } from "framer-motion";
 import { stats, strengthExtras } from "@/data/site";
 import { FadeIn } from "@/components/motion/Motion";
 
-const units = ["Sq. Ft.", "Sq. Ft.", "", ""] as const;
-
 function formatCount(n: number) {
   return n.toLocaleString("en-IN");
 }
@@ -88,8 +86,8 @@ export default function StrengthInNumbers() {
           </h2>
         </FadeIn>
 
-        <div className="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, index) => (
+        <div className="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {stats.map((stat) => (
             <article key={stat.label} className="bg-white px-5 py-8 sm:px-6 sm:py-10">
               <p className="font-display text-4xl font-semibold tabular-nums tracking-tight text-ink sm:text-5xl">
                 <CountStat
@@ -99,9 +97,9 @@ export default function StrengthInNumbers() {
                   active={active}
                 />
               </p>
-              {units[index] ? (
+              {stat.unit ? (
                 <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">
-                  {units[index]}
+                  {stat.unit}
                 </p>
               ) : null}
               <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-steel">

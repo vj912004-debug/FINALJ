@@ -113,7 +113,7 @@ export default function VideoLanding() {
             </a>
           </div>
 
-          <dl className="mt-8 grid grid-cols-2 gap-2 sm:mt-14 sm:max-w-4xl sm:gap-3 lg:grid-cols-4">
+          <dl className="mt-8 grid grid-cols-2 gap-2 sm:mt-14 sm:max-w-4xl sm:gap-3 lg:grid-cols-3">
             {stats.map((s) => (
               <div
                 key={s.label}

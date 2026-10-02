@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "navy" | "outline" | "ghost" | "whatsapp";
 
 const variantClass: Record<Variant, string> = {
-  primary: "btn-primary btn-shine",
+  primary: "btn-primary btn-shine btn-shine-loop",
   navy: "btn-navy btn-shine",
   outline: "btn-outline btn-shine",
   ghost: "btn-ghost-light btn-shine",

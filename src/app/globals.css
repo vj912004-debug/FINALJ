@@ -532,6 +532,14 @@ video {
   animation: btn-shine-sweep 2.35s ease-in-out infinite;
 }
 
+.btn svg:last-child {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn:hover svg:last-child {
+  transform: translateX(4px);
+}
+
 .btn-primary {
   border: 1px solid transparent;
   background: #f47c20;
@@ -541,7 +549,8 @@ video {
 
 .btn-primary:hover {
   background: #d96510;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -14px rgba(244, 124, 32, 0.85);
 }
 
 .btn-pulse {
@@ -650,9 +659,9 @@ video {
 }
 
 .card-panel:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, #0b2348 35%, #d0dbe4);
-  box-shadow: 0 24px 48px -28px rgba(1, 77, 110, 0.5);
+  transform: translateY(-7px);
+  border-color: color-mix(in srgb, #f47c20 45%, #d0dbe4);
+  box-shadow: 0 28px 52px -26px rgba(11, 35, 72, 0.45);
 }
 
 .card-panel:hover::before {
@@ -1007,6 +1016,10 @@ video {
   .btn:hover,
   .btn:active,
   .card-panel:hover {
+    transform: none;
+  }
+
+  .btn:hover svg:last-child {
     transform: none;
   }
 

@@ -3,7 +3,7 @@
 import { Clock3, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
 import QuoteForm from "@/components/QuoteForm";
 import FinalCTA from "@/components/FinalCTA";
-import { company } from "@/data/site";
+import { company, departmentContacts, hasCredential } from "@/data/site";
 import {
   RiseIn,
   StaggerChildren,
@@ -72,30 +72,50 @@ export default function ContactContent() {
                       <p className="text-xs font-semibold uppercase tracking-wider text-brand">
                         {c.role}
                       </p>
-                      <p className="mt-2 text-sm text-steel">
-                        Mobile:{" "}
-                        <a
-                          href={`tel:+91${c.phones[0]}`}
-                          className="link-underline font-semibold text-navy"
-                        >
-                          +91 {c.phones[0]}
-                        </a>
-                      </p>
-                      {c.phones[1] ? (
-                        <p className="text-sm text-steel">
-                          Alternate:{" "}
+                      {c.phones.map((phone, index) => (
+                        <p key={phone} className="mt-2 text-sm text-steel first:mt-2">
+                          {index === 0 ? "Mobile: " : "Alternate: "}
                           <a
-                            href={`tel:+91${c.phones[1]}`}
+                            href={`tel:+91${phone}`}
                             className="link-underline font-semibold text-navy"
                           >
-                            +91 {c.phones[1]}
+                            +91 {phone}
                           </a>
                         </p>
-                      ) : null}
+                      ))}
                     </div>
                   </div>
                 </StaggerItem>
               ))}
+
+              <StaggerItem>
+                <div className="surface-lift border border-line bg-background p-4 sm:p-5">
+                  <p className="font-display text-sm font-bold uppercase tracking-wide text-navy">
+                    Department Contacts
+                  </p>
+                  <ul className="mt-3 space-y-2 text-sm text-steel">
+                    {departmentContacts.map((dept) => (
+                      <li key={dept.label} className="flex gap-2">
+                        <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                        <span>
+                          {dept.label}:{" "}
+                          {dept.phones.map((phone, index) => (
+                            <span key={phone}>
+                              {index > 0 ? " / " : null}
+                              <a
+                                href={`tel:+91${phone}`}
+                                className="link-underline font-semibold text-navy"
+                              >
+                                {phone}
+                              </a>
+                            </span>
+                          ))}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </StaggerItem>
 
               <StaggerItem>
                 <div className="surface-lift flex gap-3 border border-line bg-background p-4 text-sm text-steel sm:p-5">
@@ -107,10 +127,12 @@ export default function ContactContent() {
                     >
                       {company.email}
                     </a>
-                    <p className="mt-1 text-xs">
-                      GST / CIN / MSME / ISO: {company.gst} (update when
-                      available)
-                    </p>
+                    {hasCredential(company.gst) ? (
+                      <p className="mt-1 text-xs">GST: {company.gst}</p>
+                    ) : null}
+                    {hasCredential(company.cin) ? (
+                      <p className="mt-1 text-xs">CIN: {company.cin}</p>
+                    ) : null}
                   </div>
                 </div>
               </StaggerItem>

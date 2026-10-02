@@ -69,8 +69,7 @@ export default function About() {
               Focus: {company.focus}
             </p>
             <p className="mt-3 text-sm text-steel">
-              Since {company.since} · {company.certification} ·{" "}
-              {company.location}
+              Since {company.since} · {company.location}
             </p>
             <ul className="mt-6 grid gap-2 sm:grid-cols-2">
               {aboutOverview.specializations.map((item) => (

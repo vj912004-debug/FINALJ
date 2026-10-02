@@ -8,7 +8,7 @@ import Logo from "@/components/Logo";
 
 export default function Footer() {
   const pathname = usePathname();
-  const year = new Date().getFullYear();
+  const year = 2026;
 
   if (pathname === "/landing") return null;
 
@@ -26,8 +26,8 @@ export default function Footer() {
             {company.serviceLine}
           </p>
           <p className="mt-3 text-sm leading-relaxed text-steel-light">
-            {company.tagline}. {company.certification} certified. Serving the
-            engineering industry since {company.since}.
+            {company.tagline} Serving the engineering industry since{" "}
+            {company.since}.
           </p>
         </div>
 
@@ -57,6 +57,10 @@ export default function Footer() {
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden />
               Inquiry: {company.inquiryPhone}
+            </li>
+            <li className="flex items-start gap-2">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden />
+              Accounts: {company.accountsPhones.join(" / ")}
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden />
@@ -130,7 +134,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-steel-light sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>
-            © {year} {company.name}. All Rights Reserved.
+            © {year} {company.name} All Rights Reserved.
           </p>
           <p className="break-words">
             {company.subTagline} · {company.location}

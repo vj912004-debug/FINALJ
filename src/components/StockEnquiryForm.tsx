@@ -6,6 +6,8 @@ import { indianMills, supportedGrades } from "@/data/site";
 import { FadeIn, RiseIn, StaggerChildren, StaggerItem } from "@/components/motion/Motion";
 import TextReveal from "@/components/ui/text-reveal";
 import AnimatedButton from "@/components/ui/animated-button";
+import { publicEnquiryError } from "@/lib/enquiry-links";
+import EnquiryFallback from "@/components/EnquiryFallback";
 
 const inputClass =
   "w-full border border-line bg-background px-3.5 py-3 text-base text-navy outline-none transition-all focus:border-brand focus:shadow-[0_0_0_3px_rgba(241,90,36,0.14)] sm:py-2.5 sm:text-sm";
@@ -51,6 +53,22 @@ export default function StockEnquiryForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  function enquiryMessage() {
+    return [
+      "Hello Jagdamba Procut, stock enquiry:",
+      `Name: ${form.customerName}`,
+      `Company: ${form.companyName}`,
+      `Phone: ${form.phone}`,
+      `Email: ${form.email}`,
+      `Grade: ${form.grade}`,
+      `Thickness: ${form.thickness}`,
+      `Width: ${form.width || "—"}`,
+      `Length: ${form.length || "—"}`,
+      `Make: ${form.make || "—"}`,
+      `Quantity: ${form.quantity}`,
+    ].join("\n");
+  }
+
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
@@ -89,7 +107,9 @@ export default function StockEnquiryForm() {
       setSubmitted(true);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Unable to submit stock enquiry.",
+        publicEnquiryError(
+          err instanceof Error ? err.message : "Unable to submit stock enquiry.",
+        ),
       );
     } finally {
       setSubmitting(false);
@@ -264,9 +284,12 @@ export default function StockEnquiryForm() {
               </Field>
 
               {error ? (
-                <p className="sm:col-span-2 text-sm text-brand" role="alert">
-                  {error}
-                </p>
+                <div className="sm:col-span-2">
+                  <EnquiryFallback
+                    subject="Stock enquiry — Jagdamba Procut"
+                    message={enquiryMessage()}
+                  />
+                </div>
               ) : null}
 
               <div className="sm:col-span-2">

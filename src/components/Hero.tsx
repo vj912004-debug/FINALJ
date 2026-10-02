@@ -133,21 +133,21 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48, duration: 0.5 }}
         >
-          <ShineLink href="/quote" className="btn btn-primary min-h-12 w-full text-sm" shine={false}>
+          <ShineLink href="/quote" className="btn btn-primary btn-shine-loop min-h-12 w-full text-sm" shine={false}>
             Get a Quote
-          </ShineLink>
-          <ShineLink href="/quote#upload" className="btn btn-ghost-light min-h-12 w-full text-sm" shine={false}>
-            <FileUp className="h-4 w-4" aria-hidden />
-            Upload Drawing
           </ShineLink>
           <ShineLink
             href={homeCtas[2].href}
             external
-            className="btn btn-whatsapp min-h-12 w-full text-sm"
+            className="btn btn-whatsapp btn-shine-loop min-h-12 w-full text-sm"
             shine={false}
           >
             <MessageCircle className="h-4 w-4" aria-hidden />
             WhatsApp Sales
+          </ShineLink>
+          <ShineLink href="/quote#upload" className="btn btn-ghost-light min-h-12 w-full text-sm" shine={false}>
+            <FileUp className="h-4 w-4" aria-hidden />
+            Upload Drawing
           </ShineLink>
         </motion.div>
 
@@ -157,19 +157,19 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.55 }}
         >
-          <ShineLink href="/quote" className="btn btn-primary btn-shine-loop" shine={false}>
+          <ShineLink href="/quote" className="btn btn-primary btn-shine-loop btn-pulse" shine={false}>
             Get a Quote
             <ArrowRight className="h-4 w-4" aria-hidden />
           </ShineLink>
-          <ShineLink href="/quote#upload" className="btn btn-ghost-light" shine={false}>
+          <ShineLink href="/quote#upload" className="btn btn-ghost-light btn-shine" shine={false}>
             <FileUp className="h-4 w-4" aria-hidden />
             Upload Drawing
           </ShineLink>
-          <ShineLink href="/stock-enquiry" className="btn btn-ghost-light" shine={false}>
+          <ShineLink href="/stock-enquiry" className="btn btn-ghost-light btn-shine" shine={false}>
             <PackageSearch className="h-4 w-4" aria-hidden />
             Check Material
           </ShineLink>
-          <ShineLink href={homeCtas[2].href} external className="btn btn-whatsapp" shine={false}>
+          <ShineLink href={homeCtas[2].href} external className="btn btn-whatsapp btn-shine-loop" shine={false}>
             <MessageCircle className="h-4 w-4" aria-hidden />
             WhatsApp Sales
           </ShineLink>

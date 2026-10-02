@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FileText, MessageCircle, PackageSearch } from "lucide-react";
+import { ArrowRight, FileText, MessageCircle, PackageSearch } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 import TextReveal from "@/components/ui/text-reveal";
 import { company } from "@/data/site";
@@ -83,6 +83,10 @@ export default function InteractiveCTABand() {
                 </span>
                 <span className="text-xs font-normal normal-case leading-relaxed tracking-normal text-white/80">
                   {action.blurb}
+                </span>
+                <span className="mt-auto inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-white/90">
+                  Continue
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </>
             );

@@ -39,7 +39,7 @@ const teasers = [
   {
     href: "/facilities",
     title: "Infrastructure",
-    blurb: "26,000 sq. ft. shed, 75,000 sq. ft. yard and 4×20T overhead cranes.",
+    blurb: "26,000 sq. ft. shed, 75,000 sq. ft. yard, 2,500 MT stock and 5×20T EOT cranes.",
     image: plantImages.shed,
     visual: "image" as const,
   },
