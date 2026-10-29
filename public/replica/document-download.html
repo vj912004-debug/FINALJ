@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Document Download | Jagdamba Procut</title>
+  <link rel="stylesheet" href="/replica/style.css">
+</head>
+<body>
+  <main>
+    <section style="max-width:680px;margin:auto">
+      <a href="/">← Website</a>
+      <p class="eyebrow">JAGDAMBA PROCUT PRIVATE LIMITED</p>
+      <h1>Download document</h1>
+      <p id="doc-name">Document</p>
+      <p>Complete your details and verify an email OTP before downloading. Your details and requested document will be shared with our team. OTP verifies email access; other details are self-declared.</p>
+      <p role="alert"></p>
+      <form method="post" data-document-otp="document" style="display:grid;gap:16px">
+        <input type="hidden" name="file" value="">
+        <label>Contact person name<input style="display:block;width:100%;padding:12px" name="name" type="text" minlength="2" maxlength="100" required></label>
+        <label>Company name<input style="display:block;width:100%;padding:12px" name="company" type="text" minlength="2" maxlength="160" required></label>
+        <label>Email ID<input style="display:block;width:100%;padding:12px" name="email" type="email" minlength="5" maxlength="254" required></label>
+        <label>Mobile number<input style="display:block;width:100%;padding:12px" name="phone" type="tel" minlength="7" maxlength="30" required></label>
+        <label>Company address / city<input style="display:block;width:100%;padding:12px" name="address" type="text" minlength="8" maxlength="800" required></label>
+        <label><input type="checkbox" name="consent" required> I agree to share these details with Jagdamba Procut for this document request.</label>
+        <button class="btn" type="submit" disabled>Verify email OTP &amp; Download</button>
+      </form>
+    </section>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const file = params.get("file") || "";
+    const name = decodeURIComponent(file.split("/").pop() || "Document");
+    document.getElementById("doc-name").textContent = name;
+    const form = document.querySelector("form");
+    form.dataset.documentOtp = "document:" + file;
+    form.elements.file.value = file;
+  </script>
+  <script type="module" src="/replica/document-otp.js"></script>
+  <script defer src="/replica/visitor-count.js"></script>
+</body>
+</html>
